@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const EslintWebpackPlugin = require('eslint-webpack-plugin');
 
 const conf = {
   entry: path.resolve(__dirname, './src/index.ts'),
@@ -45,6 +46,9 @@ const conf = {
     new HtmlWebpackPlugin({
       template: './src/index.html',
     }),
+    new EslintWebpackPlugin({
+      files: './src/**/*.ts'
+    })
   ],
 };
 
