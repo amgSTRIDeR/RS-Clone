@@ -47,8 +47,8 @@ const conf = {
       template: './src/index.html',
     }),
     new EslintWebpackPlugin({
-      files: './src/**/*.ts'
-    })
+      files: './src/**/*.ts',
+    }),
   ],
 };
 
