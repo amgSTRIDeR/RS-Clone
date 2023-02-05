@@ -23,6 +23,8 @@
   width: 100px;
   padding: 5px;
 
+  border-radius: 0.5vw;
+
   transition: 0.3s ease;
 
   & .main-logo__logo {
@@ -35,7 +37,6 @@
 
   &:hover {
     outline: 1px solid $MAIN_TEXT;
-    border-radius: 0.5vw;
     cursor: pointer;
 
     transition: 0.3s ease;
@@ -56,12 +57,12 @@
 
   background: none;
   border: none;
+  border-radius: 0.5vw;
 
   transition: 0.3s ease;
 
   &:hover {
     outline: 1px solid $MAIN_TEXT;
-    border-radius: 0.5vw;
     cursor: pointer;
 
     transition: 0.3s ease;
@@ -112,7 +113,7 @@
 
     display: none;
     box-sizing: border-box;
-    
+
     & .search__input {
       width: 108px;
     }
@@ -328,3 +329,109 @@
     }
   }
 }
+
+//start
+.start-page {
+  display: flex;
+  padding: 5vw;
+
+  font-family: "Roboto", sans-serif;
+  color: $MAIN_TEXT;
+
+  background: linear-gradient(67deg, $LOGO 0%, $BODY_BACKGROUND 30%, $BODY_BACKGROUND 70%, $LOGO 100%);
+
+  
+  & .information {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+  }
+
+  & .information__header {
+    font-size: 4vw;
+  }
+
+  & .information__text {
+    font-size: 2vw;
+  }
+
+  & .information__signup-button {
+    width: calc(5.000vw + 70.00px);
+    height: calc(1.500vw + 21.00px);
+
+    font-family: inherit;
+    font-size: calc(1.100vw + 7.40px);
+    
+    color: #ffffff;
+    background-color: $LOGO;
+    border: none;
+    border-radius: 0.5vw;
+
+    transition: 0.3s ease;
+
+    &:hover {
+      cursor: pointer;
+
+      transform: scale(1.05);
+      transition: 0.3s ease;
+    }
+  }
+
+  & .information__video-button {
+    width: calc(5.000vw + 70.00px);
+    height: calc(1.500vw + 21.00px);
+    margin-top: 10px;
+
+    font-family: inherit;
+    font-size: calc(1.100vw + 7.40px);
+    
+    color: #ffffff;
+    background-color: $LOGO;
+    border: none;
+    border-radius: 0.5vw;
+
+    transition: 0.3s ease;
+
+    &:hover {
+      cursor: pointer;
+
+      transform: scale(1.05);
+      transition: 0.3s ease;
+    }
+  }
+
+  & .start-image {
+    width: 50%;
+  }
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+
+    & .information {
+      width: 100%;
+    }
+
+    & .information__header {
+      font-size: calc(3.571vw + 8.57px);
+      text-align: center;
+    }
+  
+    & .information__text {
+      font-size: calc(2.143vw + 7.14px);
+      text-align: center;
+    }
+
+    & .start-image {
+      width: 100%;
+    }
+
+    & .information__signup-button,
+    & .information__video-button {
+      width: calc(17.857vw + 42.86px);
+      height: calc(5.357vw + 12.86px);
+  
+      font-size: calc(3.929vw + 1.43px);
+    }
+  }
+} 
