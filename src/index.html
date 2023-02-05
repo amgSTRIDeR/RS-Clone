@@ -9,7 +9,7 @@
 </head>
 
 <body class="body">
-  <header class="header">
+  <header class="header header__settings_active">
     <nav class="header-nav">
       <svg class="main-logo" viewBox="0 0 312 64" class="d-block" xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -41,11 +41,51 @@
           </g>
         </g>
       </svg>
-      <button class="nav-button">Workspaces<svg class="nav-button__icon" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 512.02 319.26"><path d="M5.9 48.96 48.97 5.89c7.86-7.86 20.73-7.84 28.56 0l178.48 178.48L434.5 5.89c7.86-7.86 20.74-7.82 28.56 0l43.07 43.07c7.83 7.84 7.83 20.72 0 28.56l-192.41 192.4-.36.37-43.07 43.07c-7.83 7.82-20.7 7.86-28.56 0l-43.07-43.07-.36-.37L5.9 77.52c-7.87-7.86-7.87-20.7 0-28.56z"/></svg></button>
-      <button class="nav-button">Starred<svg class="nav-button__icon" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 512.02 319.26"><path d="M5.9 48.96 48.97 5.89c7.86-7.86 20.73-7.84 28.56 0l178.48 178.48L434.5 5.89c7.86-7.86 20.74-7.82 28.56 0l43.07 43.07c7.83 7.84 7.83 20.72 0 28.56l-192.41 192.4-.36.37-43.07 43.07c-7.83 7.82-20.7 7.86-28.56 0l-43.07-43.07-.36-.37L5.9 77.52c-7.87-7.86-7.87-20.7 0-28.56z"/></svg></button>
+      <button class="nav-button nav-button__workspaces">Workspaces<svg class="nav-button__icon"
+          xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision" text-rendering="geometricPrecision"
+          image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 512.02 319.26">
+          <path
+            d="M5.9 48.96 48.97 5.89c7.86-7.86 20.73-7.84 28.56 0l178.48 178.48L434.5 5.89c7.86-7.86 20.74-7.82 28.56 0l43.07 43.07c7.83 7.84 7.83 20.72 0 28.56l-192.41 192.4-.36.37-43.07 43.07c-7.83 7.82-20.7 7.86-28.56 0l-43.07-43.07-.36-.37L5.9 77.52c-7.87-7.86-7.87-20.7 0-28.56z" />
+        </svg></button>
+      <button class="nav-button nav-button__starred">Starred<svg class="nav-button__icon"
+          xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision" text-rendering="geometricPrecision"
+          image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 512.02 319.26">
+          <path
+            d="M5.9 48.96 48.97 5.89c7.86-7.86 20.73-7.84 28.56 0l178.48 178.48L434.5 5.89c7.86-7.86 20.74-7.82 28.56 0l43.07 43.07c7.83 7.84 7.83 20.72 0 28.56l-192.41 192.4-.36.37-43.07 43.07c-7.83 7.82-20.7 7.86-28.56 0l-43.07-43.07-.36-.37L5.9 77.52c-7.87-7.86-7.87-20.7 0-28.56z" />
+        </svg></button>
     </nav>
+    <div class="search"><svg class="search__icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z" />
+      </svg><input class="search__input" type="text" placeholder="search"></div>
     <nav class="sets">
-      <div class="sets__search"><svg class="search__icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"/></svg><input class="search__input" type="text"></div>
+      <div class="sets__lang">
+        <button class="sets__button sets__button_active button-en">EN</button>
+        <button class="sets__button button-ru">RU</button>
+      </div>
+      <div class="sets__theme">
+        <button class="sets__button sets__button_active button-light">Light</button>
+        <button class="sets__button button-dark">Dark</button>
+        <button class="sets__button button-black">Black</button>
+      </div>
+      <div class="sets__account-button">Log In</div>
+      <!-- <div class="sets__account-image"></div> -->
+      <svg class="settings-icon" version="1.1" xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
+        style="enable-background:new 0 0 512 512;" xml:space="preserve">
+        <g id="XMLID_1_">
+          <path id="XMLID_5_" d="M468.9,255.5c0-27.8,17.6-51.8,41.7-61.1c-6.5-26.8-17.6-52.8-31.5-75.9c-8.3,3.7-17.6,5.6-26.8,5.6
+            c-16.7,0-33.3-6.5-46.3-19.4c-19.4-19.4-24.1-49.1-13.9-73.1C369,17.6,344,6.5,316.2,0c-8.3,25-32.4,42.6-60.2,42.6
+            S204.2,25,194.9,0.9C168,7.4,142.1,18.5,119,32.4c11.1,24.1,6.5,52.8-13.9,73.1c-13,13-29.6,19.4-46.3,19.4
+            c-9.3,0-18.5-1.9-26.8-5.6c-13.9,23.1-25,49.1-31.5,75.9c24.1,9.3,41.7,33.3,41.7,61.1s-17.6,51.8-41.7,61.1
+            c6.5,26.8,17.6,52.8,31.5,75.9c8.3-3.7,17.6-5.6,26.8-5.6c16.7,0,33.3,6.5,46.3,19.4c19.4,19.4,24.1,49.1,13.9,73.1
+            c23.1,13.9,49.1,25,75.9,31.5c9.3-24.1,33.3-41.7,61.1-41.7s51.8,17.6,61.1,41.7c26.8-6.5,52.8-17.6,75.9-31.5
+            c-10.2-24.1-6.5-52.8,13.9-73.1c13-13,29.6-19.4,46.3-19.4c9.3,0,18.5,1.9,26.8,5.6c13.9-23.1,25-49.1,31.5-75.9
+            C485.6,307.4,468.9,283.3,468.9,255.5L468.9,255.5z M256.9,361.1c-58.3,0-106.5-47.2-106.5-106.5s47.2-106.5,106.5-106.5
+            s106.5,49.1,106.5,107.4S316.2,361.1,256.9,361.1z" />
+        </g>
+      </svg>
+      <div class="settings-area"></div>
     </nav>
   </header>
 </body>
