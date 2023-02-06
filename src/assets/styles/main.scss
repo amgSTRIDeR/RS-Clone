@@ -1,2 +1,11 @@
-@import './fonts';
-@import './variables';
+@import './variables.scss';
+@import './fonts.scss';
+@import '../../../src/layers/components/Header/Header.scss';
+@import '../../../src/layers/components/Start/Start.scss';
+@import '../../../src/layers/components/Footer/Footer.scss';
+
+.body {
+  margin: 0;
+  background-color: $BODY_BACKGROUND;
+  min-height: 100vh;
+}
