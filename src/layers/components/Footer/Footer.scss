@@ -1,0 +1,93 @@
+
+.footer {
+  position: relative;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 44px;
+  max-height: 44px;
+  padding: 0 5vw 0 5vw;
+  box-sizing: border-box;
+
+  background-color: $ELEMENT_BACKGROUND;
+  color: $MAIN_TEXT;
+  
+  user-select: none;
+}
+
+.year-author {
+  text-align: center;
+  font-family: 'Aire Exterior', sans-serif;
+  font-size: 34px;
+  text-transform: uppercase;
+
+  &:hover {
+    cursor: default;
+  }
+}
+
+.github-link {
+  width: calc(0.781vw + 22.50px);
+  margin-top: 5px;
+}
+
+
+.github-link__svg {
+  fill: $MAIN_TEXT;
+
+  transition: all 0.3s ease;
+}
+
+.github-link__svg:hover {
+  fill: $LOGO;
+
+  transition: all 0.3s ease;
+}
+
+.rsschool-link__svg {
+  margin-top: 5px;
+  width: 90px;
+
+  fill: $MAIN_TEXT;
+
+  transition: all 0.3s ease;
+
+  & .svg_0,
+  & .st0 {
+    fill: none;
+  }
+
+  & .st5 {
+    fill: none;
+    stroke: $MAIN_TEXT;
+    stroke-width: 4;
+    stroke-miterlimit: 10;
+  }
+
+  & .st6,
+  & .st7 {
+    fill: none;
+    stroke: none;
+    stroke-width: 4;
+    stroke-miterlimit: 10;
+  }
+
+  & .st9 {
+    fill: none;
+    stroke: $MAIN_TEXT;
+    stroke-width: 4;
+    stroke-miterlimit: 10;
+  }
+}
+
+.rsschool-link__svg:hover {
+  fill: $LOGO;
+
+  transition: all 0.3s ease;
+
+  & .st5,
+  & .st9 {
+    stroke: $LOGO;
+  }
+}
