@@ -9,7 +9,7 @@ export default class Footer {
   }
 
   public render(): void {
-    const footer = createElement('footer', 'footer');
+    const footer = createElement('footer', 'absolute inset-0 pointer-events-none border border-black/5 rounded-xl dark:border-white/5');
     const githubLinkFirst: HTMLLinkElement = createElement('a', 'github-link');
     githubLinkFirst.href = 'https://github.com/A-nastasi-a';
     githubLinkFirst.title = 'Visit Anastasia\'s Github';
