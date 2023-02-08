@@ -22,6 +22,6 @@ export default class View {
   private render(): void {
     this.header.render();
     this.start.render();
-    // this.footer.render();
+    this.footer.render();
   }
 }
