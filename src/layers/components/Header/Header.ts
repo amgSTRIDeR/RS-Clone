@@ -8,97 +8,218 @@ export default class Header {
 
   lang: string;
 
-  isLogin: boolean;
+  isAuthenticated: boolean;
 
   constructor(
     container: HTMLElement,
     theme: string = 'light',
     lang: string = 'en',
-    isLogin: boolean = false,
+    isAuthenticated: boolean = false,
   ) {
     this.container = container;
     this.theme = theme;
     this.lang = lang;
-    this.isLogin = isLogin;
+    this.isAuthenticated = isAuthenticated;
   }
 
   public render(): void {
-    const header = createElement('header', 'header');
+    const header = createElement(
+      'header',
+      'px-[2vw]',
+      'h-[8vh]',
+      'min-h-16',
+      'bg-base-100',
+      'sticky',
+      'top-0',
+      'flex',
+      'flex-row',
+      'justify-between',
+      'items-center',
+    );
+    header.id = 'header';
+    header.insertAdjacentHTML('afterbegin', HeaderSVG.Logo);
 
-    const headerNav = createElement('nav', 'header-nav');
-    const workspacesButton = createElement('button', 'nav-button', 'nav-button__workspaces');
-    workspacesButton.innerHTML = `Workspaces${HeaderSVG.ArrowDown}`;
-    const starredButton = createElement('button', 'nav-button', 'nav-button__starred');
-    starredButton.innerHTML = `Starred${HeaderSVG.ArrowDown}`;
-    headerNav.innerHTML = `${HeaderSVG.Logo}`;
-    if (this.isLogin) {
-      headerNav.appendChild(workspacesButton);
-      headerNav.appendChild(starredButton);
+    if (this.isAuthenticated) {
+      const searchWrapper = createElement('div', 'relative');
+      searchWrapper.innerHTML = HeaderSVG.MagnifyingGlass;
+      const searchInput = createElement(
+        'input',
+        'sm:bg-base-200',
+        'text-primary',
+        'rounded',
+        'pr-[25px]',
+        'text-center',
+        'sm:static',
+        'absolute',
+        'sm:visible',
+        'sm:static',
+        'absolute',
+        'invisible',
+        'top-[50px]',
+        'left-[-70px]',
+        'bg-base-100',
+        'placeholder:text-secondary',
+      ) as HTMLInputElement;
+      searchInput.id = 'search-input';
+      searchInput.type = 'text';
+      searchInput.placeholder = 'Search';
+      searchWrapper.appendChild(searchInput);
+      header.appendChild(searchWrapper);
     }
-    header.appendChild(headerNav);
 
-    const searchDiv = createElement('div', 'search');
-    searchDiv.innerHTML = `${HeaderSVG.MagnifyingGlass}`;
-    const searchInput: HTMLInputElement = createElement('input', 'search__input');
-    searchInput.type = 'text';
-    searchInput.placeholder = 'search';
-    searchDiv.appendChild(searchInput);
-    header.appendChild(searchDiv);
+    const navContainer = createElement(
+      'div',
+      'flex',
+      'flex-col',
+      'items-end',
+      'justify-self-end',
+      'text-secondary',
+    );
+    navContainer.id = 'nav-container';
+    const navIcon = createElement(
+      'div',
+      'h-12',
+      'w-12',
+      'p-2',
+      'group',
+      'md:hidden',
+      'cursor-pointer',
+    );
+    navIcon.id = 'nav-icon';
+    navIcon.innerHTML = HeaderSVG.Hamburger;
+    navContainer.appendChild(navIcon);
+    const navMenu = createElement(
+      'ul',
+      'hidden',
+      'pr-3',
+      'font-semibold',
+      'text-xl',
+      'text-right',
+      'md:h-12',
+      'md:flex',
+      'md:flex-row',
+      'md:items-center',
+      'md:justify-end',
+      'md:space-x-8',
+      'gap-y-5',
+      'md:static',
+      'absolute',
+      'top-[70px]',
+      'right-[10px]',
+      'backdrop-blur-md',
+      'bg-neutral/10',
+      'md:bg-neutral/0',
+      'rounded',
+      'flex',
+      'flex-col-reverse',
+      'items-center',
+      'p-5',
+    );
+    navMenu.id = 'nav-menu';
 
-    const setsNav = createElement('nav', 'sets');
-    const setsLang = createElement('div', 'sets__lang');
-    const setsLangButtonEn = createElement('button', 'sets__button', 'button-en');
-    setsLangButtonEn.textContent = 'EN';
-    const setsLangButtonRu = createElement('button', 'sets__button', 'button-ru');
-    setsLangButtonRu.textContent = 'RU';
-    setsLang.appendChild(setsLangButtonEn);
-    setsLang.appendChild(setsLangButtonRu);
-    setsNav.appendChild(setsLang);
+    if (this.isAuthenticated) {
+      const navWorkspase = createElement(
+        'li',
+        'text-lg',
+        'text-secondary',
+        'flex',
+        'items-center',
+        'h-[20px]',
+        'cursor-pointer',
+        'group',
+        'hover:text-secondary-focus',
+      );
+      navWorkspase.id = 'button-workspaces';
+      navWorkspase.innerHTML = `Workspaces${HeaderSVG.ArrowDown}`;
+      navMenu.appendChild(navWorkspase);
 
-    switch (this.lang) {
-      case 'ru':
-        setsLangButtonRu.classList.add('sets__button_active');
-        break;
-      default:
-        setsLangButtonEn.classList.add('sets__button_active');
+      const navStarred = createElement(
+        'li',
+        'text-lg',
+        'text-secondary',
+        'flex',
+        'items-center',
+        'h-[20px]',
+        'cursor-pointer',
+        'group',
+        'hover:text-secondary-focus',
+      );
+      navStarred.id = 'button-starred';
+      navStarred.innerHTML = `Starred${HeaderSVG.ArrowDown}`;
+      navMenu.appendChild(navStarred);
     }
 
-    const setsTheme = createElement('div', 'sets__theme');
-    const setsThemeButtonLight = createElement('button', 'sets__button', 'button-light');
-    setsThemeButtonLight.textContent = 'Light';
-    const setsThemeButtonDark = createElement('button', 'sets__button', 'button-dark');
-    setsThemeButtonDark.textContent = 'Dark';
-    const setsThemeButtonBlack = createElement('button', 'sets__button', 'button-black');
-    setsThemeButtonBlack.textContent = 'Black';
-    setsTheme.appendChild(setsThemeButtonLight);
-    setsTheme.appendChild(setsThemeButtonDark);
-    setsTheme.appendChild(setsThemeButtonBlack);
-    setsNav.appendChild(setsTheme);
+    const navThemes = createElement('li', 'fill-secondary', 'flex');
+
+    const buttonLight = createElement('div', 'p-[3px]', 'w-[30px]', 'cursor-pointer');
+    buttonLight.id = 'button-light';
+    buttonLight.innerHTML = HeaderSVG.Light;
+    navThemes.appendChild(buttonLight);
+
+    const buttonDark = createElement('div', 'p-[3px]', 'w-[30px]', 'cursor-pointer');
+    buttonDark.id = 'button-dark';
+    buttonDark.innerHTML = HeaderSVG.Dark;
+    navThemes.appendChild(buttonDark);
+
+    const buttonBlack = createElement('div', 'p-[3px]', 'w-[30px]', 'cursor-pointer');
+    buttonBlack.id = 'button-black';
+    buttonBlack.innerHTML = HeaderSVG.Black;
+    navThemes.appendChild(buttonBlack);
 
     switch (this.theme) {
       case 'dark':
-        setsThemeButtonDark.classList.add('sets__button_active');
+        buttonLight.classList.add('hover:fill-secondary-focus');
+        buttonDark.classList.add('fill-primary');
+        buttonBlack.classList.add('hover:fill-secondary-focus');
         break;
       case 'black':
-        setsThemeButtonBlack.classList.add('sets__button_active');
+        buttonLight.classList.add('hover:fill-secondary-focus');
+        buttonDark.classList.add('hover:fill-secondary-focus');
+        buttonBlack.classList.add('fill-primary');
         break;
       default:
-        setsThemeButtonLight.classList.add('sets__button_active');
+        buttonLight.classList.add('fill-primary');
+        buttonDark.classList.add('hover:fill-secondary-focus');
+        buttonBlack.classList.add('hover:fill-secondary-focus');
     }
-    // replace isLogin on image url?
-    if (this.isLogin) {
-      const accountImage = createElement('div', 'sets__account-image');
-      setsNav.appendChild(accountImage);
+
+    const navLang = createElement('li', 'fill-secondary', 'flex');
+
+    const buttonEn = createElement('div', 'w-[40px]', 'cursor-pointer');
+    buttonEn.id = 'button-en';
+    buttonEn.innerHTML = HeaderSVG.En;
+    navLang.appendChild(buttonEn);
+
+    const buttonRu = createElement('div', 'w-[40px]', 'cursor-pointer');
+    buttonRu.id = 'button-en';
+    buttonRu.innerHTML = HeaderSVG.Ru;
+    navLang.appendChild(buttonRu);
+
+    switch (this.lang) {
+      case 'ru':
+        buttonEn.classList.add('hover:fill-secondary-focus');
+        buttonRu.classList.add('fill-primary');
+        break;
+      default:
+        buttonEn.classList.add('fill-primary');
+        buttonRu.classList.add('hover:fill-secondary-focus');
+    }
+
+    navMenu.appendChild(navThemes);
+    navMenu.appendChild(navLang);
+    navContainer.appendChild(navMenu);
+    header.appendChild(navContainer);
+
+    if (this.isAuthenticated) {
+      const accountButton = createElement('div', 'rounded-full', 'border-2', 'border-primary', 'w-[50px]', 'h-[50px]', 'hover:border-primary-focus', 'cursor-pointer', 'bg-secondary', 'hover:bg-secondary-focus');
+      accountButton.title = 'Account info';
+      header.appendChild(accountButton);
     } else {
-      const accountLoginButton = createElement('div', 'sets__account-button');
-      accountLoginButton.textContent = 'Log In';
-      setsNav.appendChild(accountLoginButton);
+      const loginButton = createElement('div');
+      loginButton.title = 'Log In';
+      loginButton.innerHTML = HeaderSVG.Login;
+      header.appendChild(loginButton);
     }
-
-    const accountSettingsArea = createElement('div', 'settings-area');
-    setsNav.appendChild(accountSettingsArea);
-
-    header.appendChild(setsNav);
 
     this.container.append(header);
   }

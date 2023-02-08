@@ -956,6 +956,6 @@ module.exports = {
   },
   plugins: [require('daisyui')],
   daisyui: {
-    themes: ['business', 'corporate', 'night'],
+    themes: ['corporate', 'autumn', 'night'],
   },
 };

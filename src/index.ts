@@ -2,7 +2,7 @@ import './assets/styles/main.css';
 import Presenter from './layers/Presenter/Presenter';
 
 const initApp = (): void => {
-  const container: HTMLElement | null = document.querySelector('.body');
+  const container: HTMLElement | null = document.getElementById('body');
   if (!container) {
     return;
   }
@@ -31,7 +31,7 @@ buttonLight.addEventListener('click', () => {
 });
 
 buttonDark.addEventListener('click', () => {
-  bodyElement.setAttribute('data-theme', 'business');
+  bodyElement.setAttribute('data-theme', 'autumn');
 
   buttonDark.classList.add('fill-primary');
   buttonLight.classList.remove('fill-primary');
@@ -55,7 +55,7 @@ buttonBlack.addEventListener('click', () => {
 });
 
 const navIcon = document.getElementById('nav-icon') as HTMLDivElement;
-const navMenu = document.getElementById('nav-menu') as HTMLDivElement;
+const navMenu = document.getElementById('nav-menu') as HTMLUListElement;
 navIcon.addEventListener('click', () => {
   navMenu.classList.toggle('hidden');
 });

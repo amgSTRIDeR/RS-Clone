@@ -13,15 +13,15 @@ export default class View {
 
   constructor(container: HTMLElement) {
     this.container = container;
-    this.header = new Header(this.container, 'light', 'en', false);
+    this.header = new Header(this.container, 'light', 'en', true);
     this.start = new Start(this.container);
     this.footer = new Footer(this.container);
-    // this.render();
+    this.render();
   }
 
-  // private render(): void {
-  // this.header.render();
-  // this.start.render();
-  // this.footer.render();
-  // }
+  private render(): void {
+    this.header.render();
+    // this.start.render();
+    // this.footer.render();
+  }
 }
