@@ -16,7 +16,7 @@ initApp();
 const buttonLight = document.getElementById('button-light') as HTMLButtonElement;
 const buttonDark = document.getElementById('button-dark') as HTMLButtonElement;
 const buttonBlack = document.getElementById('button-black') as HTMLButtonElement;
-const bodyElement = document.querySelector('.body') as HTMLBodyElement;
+const bodyElement = document.getElementById('body') as HTMLBodyElement;
 
 buttonLight.addEventListener('click', () => {
   bodyElement.setAttribute('data-theme', 'corporate');
