@@ -117,6 +117,9 @@ export default class Header {
       'p-5',
     );
     navMenu.id = 'nav-menu';
+    navIcon.addEventListener('click', () => {
+      navMenu.classList.toggle('hidden');
+    });
 
     if (this.isAuthenticated) {
       const navWorkspase = createElement(

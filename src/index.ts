@@ -11,10 +11,3 @@ const initApp = (): void => {
 };
 
 initApp();
-// temp
-const navIcon = document.getElementById('nav-icon') as HTMLDivElement;
-const navMenu = document.getElementById('nav-menu') as HTMLUListElement;
-navIcon.addEventListener('click', () => {
-  navMenu.classList.toggle('hidden');
-});
-//
