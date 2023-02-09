@@ -1,3 +1,4 @@
+import initI18next from '../../utils/init-i18next';
 import Footer from '../components/Footer/Footer';
 import Header from '../components/Header/Header';
 import Start from '../components/Start/Start';
@@ -13,15 +14,16 @@ export default class View {
 
   constructor(container: HTMLElement) {
     this.container = container;
-    this.header = new Header(this.container, 'corporate', 'en', false);
+    this.header = new Header(this.container, 'corporate', 'en', true);
     this.start = new Start(this.container);
     this.footer = new Footer(this.container);
     this.render();
   }
 
   private render(): void {
-    this.header.render();
+    initI18next();
     this.start.render();
     this.footer.render();
+    this.header.render();
   }
 }

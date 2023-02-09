@@ -1,4 +1,4 @@
-import createElement from '../../../utils/createe-element';
+import createElement from '../../../utils/create-element';
 
 export default class Start {
   container: HTMLElement;
@@ -20,17 +20,15 @@ export default class Start {
     const startHeader = createElement(
       'h1',
       ['text-4xl', 'text-center', 'text-primary-focus'],
-      '',
-      'Trello brings all your tasks, teammates, and tools together',
     );
+    startHeader.setAttribute('data-i18n', 'startHeader');
     startInfoWrapper.appendChild(startHeader);
 
     const startText = createElement(
       'p',
       ['text-2xl', 'text-center', 'text-primary'],
-      '',
-      'Keep everything in the same place - even if your team isn’t.',
     );
+    startText.setAttribute('data-i18n', 'startText');
     startInfoWrapper.appendChild(startText);
 
     const signupButton = createElement(
@@ -50,8 +48,8 @@ export default class Start {
         'delay-50',
       ],
       'button-signup',
-      'Sign up',
     );
+    signupButton.setAttribute('data-i18n', 'signupButton');
 
     const videoButton = createElement(
       'button',
@@ -70,8 +68,8 @@ export default class Start {
         'delay-50',
       ],
       'button-video',
-      'Watch video',
     );
+    videoButton.setAttribute('data-i18n', 'videoButton');
 
     const startButtonsWrapper = createElement('div', [
       'flex',
