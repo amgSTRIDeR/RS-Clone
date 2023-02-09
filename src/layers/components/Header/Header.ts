@@ -1,4 +1,5 @@
-import createElement from '../../../utils/createElement';
+import changeTheme from '../../../utils/change-theme';
+import createElement from '../../../utils/createe-element';
 import HeaderSVG from './Header-svg';
 
 export default class Header {
@@ -12,7 +13,7 @@ export default class Header {
 
   constructor(
     container: HTMLElement,
-    theme: string = 'light',
+    theme: string = 'corporate',
     lang: string = 'en',
     isAuthenticated: boolean = false,
   ) {
@@ -167,21 +168,36 @@ export default class Header {
     navThemes.appendChild(buttonBlack);
 
     switch (this.theme) {
-      case 'dark':
+      case 'autumn':
         buttonLight.classList.add('hover:fill-secondary-focus');
         buttonDark.classList.add('fill-primary');
         buttonBlack.classList.add('hover:fill-secondary-focus');
+        this.container.setAttribute('data-theme', 'autumn');
         break;
-      case 'black':
+      case 'night':
         buttonLight.classList.add('hover:fill-secondary-focus');
         buttonDark.classList.add('hover:fill-secondary-focus');
         buttonBlack.classList.add('fill-primary');
+        this.container.setAttribute('data-theme', 'night');
         break;
       default:
         buttonLight.classList.add('fill-primary');
         buttonDark.classList.add('hover:fill-secondary-focus');
         buttonBlack.classList.add('hover:fill-secondary-focus');
+        this.container.setAttribute('data-theme', 'corporate');
     }
+
+    buttonLight.addEventListener('click', () => {
+      changeTheme('corporate', this.container, buttonLight, buttonDark, buttonBlack);
+    });
+
+    buttonDark.addEventListener('click', () => {
+      changeTheme('autumn', this.container, buttonDark, buttonLight, buttonBlack);
+    });
+
+    buttonBlack.addEventListener('click', () => {
+      changeTheme('night', this.container, buttonBlack, buttonLight, buttonDark);
+    });
 
     const navLang = createElement('li', 'fill-secondary', 'flex');
 
@@ -211,7 +227,18 @@ export default class Header {
     header.appendChild(navContainer);
 
     if (this.isAuthenticated) {
-      const accountButton = createElement('div', 'rounded-full', 'border-2', 'border-primary', 'w-[50px]', 'h-[50px]', 'hover:border-primary-focus', 'cursor-pointer', 'bg-secondary', 'hover:bg-secondary-focus');
+      const accountButton = createElement(
+        'div',
+        'rounded-full',
+        'border-2',
+        'border-primary',
+        'w-[50px]',
+        'h-[50px]',
+        'hover:border-primary-focus',
+        'cursor-pointer',
+        'bg-secondary',
+        'hover:bg-secondary-focus',
+      );
       accountButton.title = 'Account info';
       header.appendChild(accountButton);
     } else {
