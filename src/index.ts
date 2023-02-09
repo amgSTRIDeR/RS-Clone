@@ -2,7 +2,7 @@ import './assets/styles/main.css';
 import Presenter from './layers/Presenter/Presenter';
 
 const initApp = (): void => {
-  const container: HTMLElement | null = document.querySelector('.body');
+  const container: HTMLElement | null = document.getElementById('body');
   if (!container) {
     return;
   }

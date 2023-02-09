@@ -13,7 +13,7 @@ export default class View {
 
   constructor(container: HTMLElement) {
     this.container = container;
-    this.header = new Header(this.container, 'light', 'en', false);
+    this.header = new Header(this.container, 'corporate', 'en', false);
     this.start = new Start(this.container);
     this.footer = new Footer(this.container);
     this.render();

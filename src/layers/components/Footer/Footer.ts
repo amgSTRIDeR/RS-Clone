@@ -1,4 +1,4 @@
-import createElement from '../../../utils/createElement';
+import createElement from '../../../utils/createe-element';
 import FooterSVG from './Footer-svg';
 
 export default class Footer {
@@ -9,28 +9,79 @@ export default class Footer {
   }
 
   public render(): void {
-    const footer = createElement('footer', 'absolute inset-0 pointer-events-none border border-black/5 rounded-xl dark:border-white/5');
-    const githubLinkFirst: HTMLLinkElement = createElement('a', 'github-link');
+    const footer = createElement(
+      'footer',
+      ['px-[2vw]', 'h-[60px]', 'bg-base-100', 'flex', 'justify-around', 'items-center', 'grow-0', 'basis-auto', 'shrink-0'],
+      'footer',
+    );
+
+    const githubLinkFirst: HTMLLinkElement = createElement(
+      'a',
+      [
+        'w-[30px]',
+        'fill-secondary',
+        'hover:fill-primary-focus',
+        'transition',
+        'ease-in-out',
+        'delay-50',
+      ],
+      '',
+      FooterSVG.Github,
+    );
     githubLinkFirst.href = 'https://github.com/A-nastasi-a';
-    githubLinkFirst.title = 'Visit Anastasia\'s Github';
-    githubLinkFirst.innerHTML = FooterSVG.Github;
+    githubLinkFirst.title = "Visit Anastasia's Github";
 
-    const githubLinkSecond: HTMLLinkElement = createElement('a', 'github-link');
+    const githubLinkSecond: HTMLLinkElement = createElement(
+      'a',
+      [
+        'w-[30px]',
+        'fill-secondary',
+        'hover:fill-primary-focus',
+        'transition',
+        'ease-in-out',
+        'delay-50',
+      ],
+      '',
+      FooterSVG.Github,
+    );
     githubLinkSecond.href = 'https://github.com/llallonen';
-    githubLinkSecond.title = 'Visit Valeria\'s Github';
-    githubLinkSecond.innerHTML = FooterSVG.Github;
+    githubLinkSecond.title = "Visit Valeria's Github";
 
-    const githubLinkThird: HTMLLinkElement = createElement('a', 'github-link');
+    const githubLinkThird: HTMLLinkElement = createElement(
+      'a',
+      [
+        'w-[30px]',
+        'fill-secondary',
+        'hover:fill-primary-focus',
+        'transition',
+        'ease-in-out',
+        'delay-50',
+      ],
+      '',
+      FooterSVG.Github,
+    );
     githubLinkThird.href = 'https://github.com/amgSTRIDeR';
-    githubLinkThird.title = 'Visit Aleksei\'s Github';
-    githubLinkThird.innerHTML = FooterSVG.Github;
+    githubLinkThird.title = "Visit Aleksei's Github";
 
-    const year = createElement('p', 'year-author');
+    const year = createElement('p', ['text-xl', 'text-secondary']);
+    year.textContent = '2023';
 
-    const RsLink: HTMLLinkElement = createElement('a', 'rsschool-link');
+    const RsLink: HTMLLinkElement = createElement(
+      'a',
+      [
+        'w-[100px]',
+        'fill-secondary',
+        'hover:fill-primary-focus',
+        'transition',
+        'ease-in-out',
+        'delay-50',
+        'group',
+      ],
+      '',
+      FooterSVG.Rsschool,
+    );
     RsLink.href = 'https://rs.school/js/';
-    RsLink.title = 'Visit RSSchool\'s page';
-    RsLink.innerHTML = FooterSVG.Rsschool;
+    RsLink.title = "Visit RSSchool's page";
 
     footer.appendChild(githubLinkFirst);
     footer.appendChild(githubLinkSecond);

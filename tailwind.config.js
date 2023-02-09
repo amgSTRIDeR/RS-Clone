@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/index.html", "./src/**/*.ts"],
+  content: ['./src/index.html', './src/**/*.ts'],
   presets: [],
   darkMode: 'media', // or 'class'
   theme: {
@@ -745,8 +745,8 @@ module.exports = {
       150: '1.5',
     },
     screens: {
-      sm: '640px',
-      md: '768px',
+      sm: '460px',
+      md: '920px',
       lg: '1024px',
       xl: '1280px',
       '2xl': '1536px',
@@ -880,7 +880,8 @@ module.exports = {
       all: 'all',
       DEFAULT:
         'color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter',
-      colors: 'color, background-color, border-color, outline-color, text-decoration-color, fill, stroke',
+      colors:
+        'color, background-color, border-color, outline-color, text-decoration-color, fill, stroke',
       opacity: 'opacity',
       shadow: 'box-shadow',
       transform: 'transform',
@@ -953,5 +954,8 @@ module.exports = {
       50: '50',
     },
   },
-  plugins: [],
-}
+  plugins: [require('daisyui')],
+  daisyui: {
+    themes: ['corporate', 'autumn', 'night'],
+  },
+};
