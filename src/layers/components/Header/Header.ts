@@ -26,42 +26,46 @@ export default class Header {
   public render(): void {
     const header = createElement(
       'header',
-      'px-[2vw]',
-      'h-[8vh]',
-      'min-h-16',
-      'bg-base-100',
-      'sticky',
-      'top-0',
-      'flex',
-      'flex-row',
-      'justify-between',
-      'items-center',
+      [
+        'px-[2vw]',
+        'h-[8vh]',
+        'min-h-16',
+        'bg-base-100',
+        'sticky',
+        'top-0',
+        'flex',
+        'flex-row',
+        'justify-between',
+        'items-center',
+      ],
+      'header',
+      HeaderSVG.Logo,
     );
-    header.id = 'header';
-    header.insertAdjacentHTML('afterbegin', HeaderSVG.Logo);
 
     if (this.isAuthenticated) {
-      const searchWrapper = createElement('div', 'relative');
+      const searchWrapper = createElement('div', ['relative']);
       searchWrapper.innerHTML = HeaderSVG.MagnifyingGlass;
       const searchInput = createElement(
         'input',
-        'sm:bg-base-200',
-        'text-primary',
-        'rounded',
-        'pr-[25px]',
-        'text-center',
-        'sm:static',
-        'absolute',
-        'sm:visible',
-        'sm:static',
-        'absolute',
-        'invisible',
-        'top-[50px]',
-        'left-[-70px]',
-        'bg-base-100',
-        'placeholder:text-secondary',
+        [
+          'sm:bg-base-200',
+          'text-primary',
+          'rounded',
+          'pr-[25px]',
+          'text-center',
+          'sm:static',
+          'absolute',
+          'sm:visible',
+          'sm:static',
+          'absolute',
+          'invisible',
+          'top-[50px]',
+          'left-[-70px]',
+          'bg-base-100',
+          'placeholder:text-secondary',
+        ],
+        'search-input',
       ) as HTMLInputElement;
-      searchInput.id = 'search-input';
       searchInput.type = 'text';
       searchInput.placeholder = 'Search';
       searchWrapper.appendChild(searchInput);
@@ -70,53 +74,47 @@ export default class Header {
 
     const navContainer = createElement(
       'div',
-      'flex',
-      'flex-col',
-      'items-end',
-      'justify-self-end',
-      'text-secondary',
+      ['flex', 'flex-col', 'items-end', 'justify-self-end', 'text-secondary'],
+      'nav-container',
     );
-    navContainer.id = 'nav-container';
     const navIcon = createElement(
       'div',
-      'h-12',
-      'w-12',
-      'p-2',
-      'group',
-      'md:hidden',
-      'cursor-pointer',
+      ['h-12', 'w-12', 'p-2', 'group', 'md:hidden', 'cursor-pointer'],
+      'nav-icon',
+      HeaderSVG.Hamburger,
     );
-    navIcon.id = 'nav-icon';
-    navIcon.innerHTML = HeaderSVG.Hamburger;
+
     navContainer.appendChild(navIcon);
     const navMenu = createElement(
       'ul',
-      'hidden',
-      'pr-3',
-      'font-semibold',
-      'text-xl',
-      'text-right',
-      'md:h-12',
-      'md:flex',
-      'md:flex-row',
-      'md:items-center',
-      'md:justify-end',
-      'md:space-x-8',
-      'gap-y-5',
-      'md:static',
-      'absolute',
-      'top-[70px]',
-      'right-[10px]',
-      'backdrop-blur-md',
-      'bg-neutral/10',
-      'md:bg-neutral/0',
-      'rounded',
-      'flex',
-      'flex-col-reverse',
-      'items-center',
-      'p-5',
+      [
+        'hidden',
+        'pr-3',
+        'font-semibold',
+        'text-xl',
+        'text-right',
+        'md:h-12',
+        'md:flex',
+        'md:flex-row',
+        'md:items-center',
+        'md:justify-end',
+        'md:space-x-8',
+        'gap-y-5',
+        'md:static',
+        'absolute',
+        'top-[70px]',
+        'right-[10px]',
+        'backdrop-blur-md',
+        'bg-neutral/10',
+        'md:bg-neutral/0',
+        'rounded',
+        'flex',
+        'flex-col-reverse',
+        'items-center',
+        'p-5',
+      ],
+      'nav-menu',
     );
-    navMenu.id = 'nav-menu';
     navIcon.addEventListener('click', () => {
       navMenu.classList.toggle('hidden');
     });
@@ -124,50 +122,63 @@ export default class Header {
     if (this.isAuthenticated) {
       const navWorkspase = createElement(
         'li',
-        'text-lg',
-        'text-secondary',
-        'flex',
-        'items-center',
-        'h-[20px]',
-        'cursor-pointer',
-        'group',
-        'hover:text-secondary-focus',
+        [
+          'text-lg',
+          'text-secondary',
+          'flex',
+          'items-center',
+          'h-[20px]',
+          'cursor-pointer',
+          'group',
+          'hover:text-secondary-focus',
+        ],
+        'button-workspaces',
+        `Workspaces${HeaderSVG.ArrowDown}`,
       );
-      navWorkspase.id = 'button-workspaces';
-      navWorkspase.innerHTML = `Workspaces${HeaderSVG.ArrowDown}`;
       navMenu.appendChild(navWorkspase);
 
       const navStarred = createElement(
         'li',
-        'text-lg',
-        'text-secondary',
-        'flex',
-        'items-center',
-        'h-[20px]',
-        'cursor-pointer',
-        'group',
-        'hover:text-secondary-focus',
+        [
+          'text-lg',
+          'text-secondary',
+          'flex',
+          'items-center',
+          'h-[20px]',
+          'cursor-pointer',
+          'group',
+          'hover:text-secondary-focus',
+        ],
+        'button-starred',
+        `Starred${HeaderSVG.ArrowDown}`,
       );
-      navStarred.id = 'button-starred';
-      navStarred.innerHTML = `Starred${HeaderSVG.ArrowDown}`;
       navMenu.appendChild(navStarred);
     }
 
-    const navThemes = createElement('li', 'fill-secondary', 'flex');
+    const navThemes = createElement('li', ['fill-secondary', 'flex']);
 
-    const buttonLight = createElement('div', 'p-[3px]', 'w-[30px]', 'cursor-pointer');
-    buttonLight.id = 'button-light';
-    buttonLight.innerHTML = HeaderSVG.Light;
+    const buttonLight = createElement(
+      'div',
+      ['p-[3px]', 'w-[30px]', 'cursor-pointer'],
+      'button-light',
+      HeaderSVG.Light,
+    );
     navThemes.appendChild(buttonLight);
 
-    const buttonDark = createElement('div', 'p-[3px]', 'w-[30px]', 'cursor-pointer');
-    buttonDark.id = 'button-dark';
-    buttonDark.innerHTML = HeaderSVG.Dark;
+    const buttonDark = createElement(
+      'div',
+      ['p-[3px]', 'w-[30px]', 'cursor-pointer'],
+      'button-dark',
+      HeaderSVG.Dark,
+    );
     navThemes.appendChild(buttonDark);
 
-    const buttonBlack = createElement('div', 'p-[3px]', 'w-[30px]', 'cursor-pointer');
-    buttonBlack.id = 'button-black';
-    buttonBlack.innerHTML = HeaderSVG.Black;
+    const buttonBlack = createElement(
+      'div',
+      ['p-[3px]', 'w-[30px]', 'cursor-pointer'],
+      'button-black',
+      HeaderSVG.Black,
+    );
     navThemes.appendChild(buttonBlack);
 
     switch (this.theme) {
@@ -202,16 +213,22 @@ export default class Header {
       changeTheme('night', this.container, buttonBlack, buttonLight, buttonDark);
     });
 
-    const navLang = createElement('li', 'fill-secondary', 'flex');
+    const navLang = createElement('li', ['fill-secondary', 'flex']);
 
-    const buttonEn = createElement('div', 'w-[40px]', 'cursor-pointer');
-    buttonEn.id = 'button-en';
-    buttonEn.innerHTML = HeaderSVG.En;
+    const buttonEn = createElement(
+      'div',
+      ['w-[40px]', 'cursor-pointer'],
+      'button-en',
+      HeaderSVG.En,
+    );
     navLang.appendChild(buttonEn);
 
-    const buttonRu = createElement('div', 'w-[40px]', 'cursor-pointer');
-    buttonRu.id = 'button-en';
-    buttonRu.innerHTML = HeaderSVG.Ru;
+    const buttonRu = createElement(
+      'div',
+      ['w-[40px]', 'cursor-pointer'],
+      'button-en',
+      HeaderSVG.Ru,
+    );
     navLang.appendChild(buttonRu);
 
     switch (this.lang) {
@@ -230,8 +247,7 @@ export default class Header {
     header.appendChild(navContainer);
 
     if (this.isAuthenticated) {
-      const accountButton = createElement(
-        'div',
+      const accountButton = createElement('div', [
         'rounded-full',
         'border-2',
         'border-primary',
@@ -241,7 +257,7 @@ export default class Header {
         'cursor-pointer',
         'bg-secondary',
         'hover:bg-secondary-focus',
-      );
+      ]);
       accountButton.title = 'Account info';
       header.appendChild(accountButton);
     } else {
