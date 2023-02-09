@@ -8,7 +8,7 @@ export default class Start {
   }
 
   public render(): void {
-    const startWrapper = createElement('div', [
+    const startInfoWrapper = createElement('div', [
       'flex',
       'flex-col',
       'items-center',
@@ -23,7 +23,7 @@ export default class Start {
       '',
       'Trello brings all your tasks, teammates, and tools together',
     );
-    startWrapper.appendChild(startHeader);
+    startInfoWrapper.appendChild(startHeader);
 
     const startText = createElement(
       'p',
@@ -31,7 +31,7 @@ export default class Start {
       '',
       'Keep everything in the same place - even if your team isn’t.',
     );
-    startWrapper.appendChild(startText);
+    startInfoWrapper.appendChild(startText);
 
     const signupButton = createElement(
       'button',
@@ -81,28 +81,26 @@ export default class Start {
     ]);
     startButtonsWrapper.appendChild(signupButton);
     startButtonsWrapper.appendChild(videoButton);
-    startWrapper.appendChild(startButtonsWrapper);
+    startInfoWrapper.appendChild(startButtonsWrapper);
 
-    const startImage = createElement('img', ['w-[50vw]', 'max-w-[600px]']) as HTMLImageElement;
+    const startImage = createElement('img', ['w-fit']) as HTMLImageElement;
     startImage.src = 'https://wac-cdn.atlassian.com/dam/jcr:015eb45b-2d77-4dc9-961e-b2fdc1843da0/Jira.svg?cdnVersion=755';
 
-    const mainElement = createElement(
-      'main',
-      [
-        'flex',
-        'md:flex-row',
-        'flex-col',
-        'justify-around',
-        'items-center',
-        'p-[1vw]',
-        'min-h-[450px]',
-        'h-[84vh]',
-        'gap-y-[10px]',
-      ],
-      'main',
-    );
+    const mainElement = createElement('main', [], 'main');
+    const startWrapper = createElement('div', [
+      'flex',
+      'md:flex-row',
+      'flex-col',
+      'justify-around',
+      'items-center',
+      'p-[5vw]',
+      'h-fit',
+      'gap-y-[5vw]',
+    ]);
+
     mainElement.appendChild(startWrapper);
-    mainElement.appendChild(startImage);
+    startWrapper.appendChild(startInfoWrapper);
+    startWrapper.appendChild(startImage);
 
     this.container.append(mainElement);
   }

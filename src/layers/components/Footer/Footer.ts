@@ -11,7 +11,7 @@ export default class Footer {
   public render(): void {
     const footer = createElement(
       'footer',
-      ['px-[2vw]', 'h-[8vh]', 'min-h-16', 'bg-base-100', 'flex', 'justify-around', 'items-center'],
+      ['px-[2vw]', 'h-[60px]', 'bg-base-100', 'flex', 'justify-around', 'items-center', 'grow-0', 'basis-auto', 'shrink-0'],
       'footer',
     );
 

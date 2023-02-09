@@ -28,8 +28,7 @@ export default class Header {
       'header',
       [
         'px-[2vw]',
-        'h-[8vh]',
-        'min-h-16',
+        'h-[60px]',
         'bg-base-100',
         'sticky',
         'top-0',
