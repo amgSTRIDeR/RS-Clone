@@ -1,5 +1,6 @@
+import changeLang from '../../../utils/change-lang';
 import changeTheme from '../../../utils/change-theme';
-import createElement from '../../../utils/createe-element';
+import createElement from '../../../utils/create-element';
 import HeaderSVG from './Header-svg';
 
 export default class Header {
@@ -66,7 +67,7 @@ export default class Header {
         'search-input',
       ) as HTMLInputElement;
       searchInput.type = 'text';
-      searchInput.placeholder = 'Search';
+      searchInput.setAttribute('data-i18n-placeholder', 'search');
       searchWrapper.appendChild(searchInput);
       header.appendChild(searchWrapper);
     }
@@ -82,6 +83,7 @@ export default class Header {
       'nav-icon',
       HeaderSVG.Hamburger,
     );
+    navIcon.setAttribute('data-i18n-title', 'navIcon');
 
     navContainer.appendChild(navIcon);
     const navMenu = createElement(
@@ -132,10 +134,9 @@ export default class Header {
           'hover:text-secondary-focus',
         ],
         'button-workspaces',
-        `Workspaces${HeaderSVG.ArrowDown}`,
+        `<span data-i18n='workspaces'></span>${HeaderSVG.ArrowDown}`,
       );
       navMenu.appendChild(navWorkspase);
-
       const navStarred = createElement(
         'li',
         [
@@ -149,7 +150,7 @@ export default class Header {
           'hover:text-secondary-focus',
         ],
         'button-starred',
-        `Starred${HeaderSVG.ArrowDown}`,
+        `<span data-i18n='starred'></span>${HeaderSVG.ArrowDown}`,
       );
       navMenu.appendChild(navStarred);
     }
@@ -162,6 +163,7 @@ export default class Header {
       'button-light',
       HeaderSVG.Light,
     );
+    buttonLight.setAttribute('data-i18n-title', 'lightTheme');
     navThemes.appendChild(buttonLight);
 
     const buttonDark = createElement(
@@ -170,6 +172,7 @@ export default class Header {
       'button-dark',
       HeaderSVG.Dark,
     );
+    buttonDark.setAttribute('data-i18n-title', 'darkTheme');
     navThemes.appendChild(buttonDark);
 
     const buttonBlack = createElement(
@@ -178,6 +181,7 @@ export default class Header {
       'button-black',
       HeaderSVG.Black,
     );
+    buttonBlack.setAttribute('data-i18n-title', 'blackTheme');
     navThemes.appendChild(buttonBlack);
 
     switch (this.theme) {
@@ -212,33 +216,22 @@ export default class Header {
       changeTheme('night', this.container, buttonBlack, buttonLight, buttonDark);
     });
 
-    const navLang = createElement('li', ['fill-secondary', 'flex']);
+    const navLang = createElement('li', ['text-secondary', 'flex']);
 
-    const buttonEn = createElement(
-      'div',
-      ['w-[40px]', 'cursor-pointer'],
-      'button-en',
-      HeaderSVG.En,
-    );
+    const buttonEn = createElement('button', ['w-[30px]', 'cursor-pointer'], 'button-en', 'En');
     navLang.appendChild(buttonEn);
 
-    const buttonRu = createElement(
-      'div',
-      ['w-[40px]', 'cursor-pointer'],
-      'button-en',
-      HeaderSVG.Ru,
-    );
+    const buttonRu = createElement('button', ['w-[30px]', 'cursor-pointer'], 'button-ru', 'Ru');
     navLang.appendChild(buttonRu);
 
-    switch (this.lang) {
-      case 'ru':
-        buttonEn.classList.add('hover:fill-secondary-focus');
-        buttonRu.classList.add('fill-primary');
-        break;
-      default:
-        buttonEn.classList.add('fill-primary');
-        buttonRu.classList.add('hover:fill-secondary-focus');
-    }
+    const buttonUk = createElement('button', ['w-[30px]', 'cursor-pointer'], 'button-uk', 'Uk');
+    navLang.appendChild(buttonUk);
+
+    navLang.addEventListener('click', (event) => {
+      if (event.target instanceof HTMLButtonElement) {
+        changeLang(event.target.id.split('-')[1], buttonRu, buttonEn, buttonUk);
+      }
+    });
 
     navMenu.appendChild(navThemes);
     navMenu.appendChild(navLang);
@@ -257,7 +250,7 @@ export default class Header {
         'bg-secondary',
         'hover:bg-secondary-focus',
       ]);
-      accountButton.title = 'Account info';
+      accountButton.setAttribute('data-i18n-title', 'accountInfo');
       header.appendChild(accountButton);
     } else {
       const loginButton = createElement('div');
@@ -266,6 +259,7 @@ export default class Header {
       header.appendChild(loginButton);
     }
 
-    this.container.append(header);
+    this.container.prepend(header);
+    changeLang(this.lang, buttonRu, buttonEn, buttonUk);
   }
 }
