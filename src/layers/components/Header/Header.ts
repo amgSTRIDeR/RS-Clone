@@ -195,7 +195,7 @@ export default class Header {
         break;
       default:
         buttonLight.classList.add('fill-primary');
-        buttonDark.classList.add('hover:fill-secondary-focus');
+        buttonDark.classList.add('hover:fill-column-focus');
         buttonBlack.classList.add('hover:fill-secondary-focus');
         this.container.setAttribute('data-theme', 'corporate');
     }
@@ -266,6 +266,6 @@ export default class Header {
       header.appendChild(loginButton);
     }
 
-    this.container.append(header);
+    this.container.prepend(header);
   }
 }
