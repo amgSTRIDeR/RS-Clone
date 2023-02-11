@@ -33,7 +33,7 @@ export default class Board {
     new BoardHeader(board).render();
     board.append(boardBody);
 
-    new Column({
+    const column = new Column({
       container: board,
       id: '1',
       name: 'name',
@@ -42,7 +42,7 @@ export default class Board {
     }).render();
 
     new Card({
-      container: boardBody, // контейнером должен выступить column
+      container: column,
       name: 'name',
       description: 'description',
       table: 'table',

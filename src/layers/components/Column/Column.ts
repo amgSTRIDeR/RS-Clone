@@ -34,6 +34,7 @@ export default class Column {
       'column__header',
       'flex',
       'justify-between',
+      'p-[6px]',
       'rounded',
     ]);
 
@@ -62,5 +63,6 @@ export default class Column {
     );
 
     this.container.append(column);
+    return column;
   }
 }

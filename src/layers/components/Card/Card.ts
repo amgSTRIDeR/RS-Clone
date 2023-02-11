@@ -63,9 +63,8 @@ export default class Card {
         'delay-50',
       ],
       '',
-      `${cardHeader} ${cardBody}`,
     );
-    console.log(card);
+    card.append(cardHeader, cardBody);
     this.container.append(card);
   }
 
