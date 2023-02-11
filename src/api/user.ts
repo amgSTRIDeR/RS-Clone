@@ -6,7 +6,6 @@ export class HttpUser {
   async getUser(id: string) {
     const response = await fetch(`${baseURL}${Path.users}${id}`, {
       headers: {
-        'Access-Control-Allow-Origin': `${baseURL}`,
       },
     });
     const data = await response.json().catch((err: Error) => {
@@ -19,7 +18,6 @@ export class HttpUser {
     const response = await fetch(`${baseURL}${Path.userRegistratin}`, {
       method: 'POST',
       headers: {
-        'Access-Control-Allow-Origin': `${baseURL}`,
         'Content-type': 'application/json',
       },
       body: JSON.stringify({
@@ -34,7 +32,6 @@ export class HttpUser {
     const response = await fetch(`${baseURL}${Path.userLogin}`, {
       method: 'POST',
       headers: {
-        'Access-Control-Allow-Origin': `${baseURL}`,
         'Content-type': 'application/json',
       },
       body: JSON.stringify({
@@ -48,11 +45,11 @@ export class HttpUser {
     return data;
   }
 
-  async removeUser(id: string) {
+  // ломает сервер
+  async deleteUser(id: string) {
     const response = await fetch(`${baseURL}${Path.users}${id}`, {
       method: 'DELETE',
       headers: {
-        'Access-Control-Allow-Origin': `${baseURL}`,
         'Content-type': 'application/json',
       },
     });
@@ -65,7 +62,6 @@ export class HttpUser {
     const response = await fetch(`${baseURL}${Path.users}${id}`, {
       method: 'PUT',
       headers: {
-        'Access-Control-Allow-Origin': `${baseURL}`,
         'Content-type': 'application/json',
       },
       body: JSON.stringify(payload),

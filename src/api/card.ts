@@ -1,10 +1,11 @@
 /* eslint-disable class-methods-use-this */
 import { baseURL, Path } from './variables';
-import { IBoardPayload, IBoard, IMsg } from './interfaces';
+import { ICardPayload, ICard, IMsg } from './interfaces';
+// ICardPayload, ICard, IMsg
 
-export class HttpBoard {
-  async createBoard(payload: IBoardPayload) {
-    const response = await fetch(`${baseURL}${Path.tables}`, {
+export class HttpCard {
+  async createCard(payload: ICardPayload) {
+    const response = await fetch(`${baseURL}${Path.cards}`, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -13,12 +14,12 @@ export class HttpBoard {
     });
     const data = await response.json().catch((err: Error) => {
       throw err;
-    }) as IBoardPayload;
+    }) as IMsg;
     return data;
   }
 
-  async updateBoard(id: string, payload: IBoardPayload) {
-    const response = await fetch(`${baseURL}${Path.tables}${id}`, {
+  async updateCard(id: string, payload: ICardPayload) {
+    const response = await fetch(`${baseURL}${Path.cards}${id}`, {
       method: 'PUT',
       headers: {
         'Content-type': 'application/json',
@@ -27,13 +28,37 @@ export class HttpBoard {
     });
     const data = await response.json().catch((err: Error) => {
       throw err;
-    }) as IBoardPayload;
+    }) as IMsg;
+    return data;
+  }
+
+  async getCard(id: string) {
+    const response = await fetch(`${baseURL}${Path.cards}${id}`, {
+      headers: {
+        'Content-type': 'application/json',
+      },
+    });
+    const data = await response.json().catch((err: Error) => {
+      throw err;
+    }) as ICard;
+    return data;
+  }
+
+  async getCards() {
+    const response = await fetch(`${baseURL}${Path.cards}`, {
+      headers: {
+        'Content-type': 'application/json',
+      },
+    });
+    const data = await response.json().catch((err: Error) => {
+      throw err;
+    }) as ICard[];
     return data;
   }
 
   // ломает сервер
-  async deleteBoard(id: string) {
-    const response = await fetch(`${baseURL}${Path.tables}${id}`, {
+  async deleteCard(id: string) {
+    const response = await fetch(`${baseURL}${Path.cards}${id}`, {
       method: 'DELETE',
       headers: {
         'Content-type': 'application/json',
@@ -43,30 +68,6 @@ export class HttpBoard {
       throw err;
     }) as IMsg;
   }
-
-  async getBoard(id: string) {
-    const response = await fetch(`${baseURL}${Path.tables}${id}`, {
-      headers: {
-        'Content-type': 'application/json',
-      },
-    });
-    const data = await response.json().catch((err: Error) => {
-      throw err;
-    }) as IBoard;
-    return data;
-  }
-
-  async getBoards() {
-    const response = await fetch(`${baseURL}${Path.tables}`, {
-      headers: {
-        'Content-type': 'application/json',
-      },
-    });
-    const data = await response.json().catch((err: Error) => {
-      throw err;
-    }) as IBoard[];
-    return data;
-  }
 }
 
-export const boardHttp: HttpBoard = new HttpBoard();
+export const cardHttp: HttpCard = new HttpCard();

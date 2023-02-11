@@ -33,6 +33,21 @@ export interface IBoard extends IBoardPayload {
   __v: number;
 }
 
+export interface ICardPayload {
+  name: string,
+  description: string,
+  table: string,
+  column: string,
+  comments: string[],
+  users: string[],
+  creator: string,
+}
+
+export interface ICard extends ICardPayload {
+  id: string;
+  __v: number;
+}
+
 export interface IMsg {
   msg: string;
 }
