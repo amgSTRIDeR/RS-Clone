@@ -1,11 +1,8 @@
 import createElement from '../../../utils/createe-element';
+import testCLick from '../../../utils/test-click';
 import Button from '../Button/Button';
 import ButtonWithIcon from '../Button/ButtonWithIcon';
 import BoardSVG from './Board-svg';
-
-function testCLick() {
-  console.log('ghjbpjit');
-}
 
 export default class BoardHeader {
   container: HTMLElement;
