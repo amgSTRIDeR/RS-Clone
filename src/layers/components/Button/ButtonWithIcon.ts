@@ -2,22 +2,44 @@ import createElement from '../../../utils/createe-element';
 import Button from './Button';
 import { IButtonWithIconProps } from './Button.types';
 
-export class ButtonWithIcon extends Button {
-  svg: string;
+export default class ButtonWithIcon extends Button {
+  svg?: string;
 
-  constructor({ value, className, onClick, svg }: IButtonWithIconProps) {
+  constructor({
+    value,
+    className,
+    onClick,
+    svg,
+  }: IButtonWithIconProps) {
     super({ value, className, onClick });
-    this.svg = svg ?? '';
+    this.svg = svg;
   }
 
   render() {
     const ButtonInstance = createElement(
       'button',
-      ['button', 'p-[3px]', 'h-[30px]', 'cursor-pointer', 'hover:fill-secondary-focus'],
+      [
+        'button',
+        'flex',
+        'items-center',
+        'gap-2',
+        'w-[100px]',
+        'h-[30px]',
+        'p-[3px]',
+        'rounded',
+        'border-primary',
+        'text-primary',
+        'border-2',
+        'hover:text-secondary-focus',
+        'hover:border-primary-focus',
+        'hover:bg-primary-focus',
+        'transition',
+        'ease-in-out',
+        'delay-50',
+      ],
       '',
-      `${this.svg}`,
+      `${this.svg} <span>${this.value}</span>`,
     );
-
     return ButtonInstance;
   }
 }

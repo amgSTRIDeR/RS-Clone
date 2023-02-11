@@ -1,7 +1,6 @@
 import createElement from '../../../utils/createe-element';
 import { IButtonProps } from './Button.types';
 
-
 export default class Button {
   value: string = '';
 
@@ -18,15 +17,30 @@ export default class Button {
   render() {
     const ButtonInstance = createElement(
       'button',
-      ['button', 'p-[3px]', 'h-[30px]', 'cursor-pointer', 'hover:fill-secondary-focus'],
+      [
+        'button',
+        'w-[30px]',
+        'h-[30px]',
+        'p-[3px]',
+        'rounded',
+        'text-primary',
+        'border-2',
+        'border-primary',
+        'hover:text-secondary-focus',
+        'hover:border-primary-focus',
+        'hover:bg-primary-focus',
+        'transition',
+        'ease-in-out',
+        'delay-50',
+      ],
       '',
       `${this.value}`,
     );
 
+    ButtonInstance.addEventListener('click', () => this.onClick);
+
     return ButtonInstance;
   }
 
-  handleClick() {
-    return this.onClick;
-  }
+  onClickHandle = () => this.onClick;
 }

@@ -7,5 +7,5 @@ export interface IButtonProps {
 }
 
 export interface IButtonWithIconProps extends IButtonProps {
-    svg: 'string';
+  svg: string;
 }
