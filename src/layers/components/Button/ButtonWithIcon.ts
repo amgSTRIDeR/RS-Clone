@@ -36,6 +36,7 @@ export default class ButtonWithIcon extends Button {
         'transition',
         'ease-in-out',
         'delay-50',
+        `${this.className[0]}`,
       ],
       '',
       `${this.svg} <span>${this.value}</span>`,

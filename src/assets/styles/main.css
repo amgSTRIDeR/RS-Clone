@@ -18,3 +18,8 @@ button svg {
 .card__button-add:hover span {
   opacity: 1;
 }
+
+button.button-add {
+  width: 100%;
+  order: 2;
+}

@@ -2,6 +2,7 @@ import createElement from '../../../utils/createe-element';
 import testCLick from '../../../utils/test-click';
 import BoardSVG from '../Board/Board-svg';
 import Button from '../Button/Button';
+import ButtonWithIcon from '../Button/ButtonWithIcon';
 import { IColumnProps } from './Column.types';
 
 export default class Column {
@@ -50,8 +51,11 @@ export default class Column {
       'div',
       [
         'column',
+        'flex',
+        'flex-col',
         'min-w-[230px]',
         'max-w-400',
+        'gap-[10px]',
         'p-[6px]',
         'bg-basic',
         'rounded',
@@ -61,6 +65,15 @@ export default class Column {
       '',
       columnHeader,
     );
+
+    const ButtonAdd = new ButtonWithIcon({
+      value: 'Add new card',
+      className: ['button-add'],
+      onClick: testCLick,
+      svg: BoardSVG.Add,
+    });
+
+    column.append(ButtonAdd.render());
 
     this.container.append(column);
     return column;

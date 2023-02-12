@@ -42,11 +42,32 @@ export default class Card {
   render() {
     const cardHeader = createElement('div', ['card__header', 'flex', 'justify-between']);
     const cardTitle = createElement('h3', ['card__title'], '', `${this.name}`);
-    const cardHoverPen = createElement('div', ['card__hover-pen', 'top-0', 'ml-auto', 'opacity-0', 'hover:block', 'w-[17px]', 'h-[17px]'], '', BoardSVG.Pen);
+    const cardHoverPen = createElement(
+      'div',
+      ['card__hover-pen', 'top-0', 'ml-auto', 'opacity-0', 'hover:block', 'w-[17px]', 'h-[17px]'],
+      '',
+      BoardSVG.Pen,
+    );
 
     cardHeader.append(cardTitle, cardHoverPen);
 
     const cardBody = createElement('div', ['board__list']);
+    const cardMember = createElement(
+      'div',
+      [
+        'card__member',
+        'flex',
+        'justify-center',
+        'items-center',
+        'w-[30px]',
+        'h-[30px]',
+        'ml-auto',
+        'rounded-full',
+        'bg-secondary',
+      ],
+      '',
+      'M',
+    );
     const card = createElement(
       'a',
       [
@@ -64,7 +85,7 @@ export default class Card {
       ],
       '',
     );
-    card.append(cardHeader, cardBody);
+    card.append(cardHeader, cardBody, cardMember);
     this.container.append(card);
   }
 
