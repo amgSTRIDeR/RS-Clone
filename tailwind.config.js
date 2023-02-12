@@ -977,7 +977,7 @@ module.exports = {
             'background-color': '#ffe1e1ab',
           },
           '.bg-basic-2': {
-            'background-color': '#dde7f5ab',
+            'background-color': '#ffffffab',
           },
           '.bg-basic-3': {
             'background-color': '#dde7f5ab',
