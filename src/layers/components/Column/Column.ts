@@ -1,5 +1,5 @@
-import createElement from '../../../utils/createe-element';
-import testCLick from '../../../utils/test-click';
+import createElement from '../../../utils/create-element';
+// import testCLick from '../../../utils/test-click';
 import BoardSVG from '../Board/Board-svg';
 import Button from '../Button/Button';
 import ButtonWithIcon from '../Button/ButtonWithIcon';
@@ -42,7 +42,7 @@ export default class Column {
     const ButtonDots = new Button({
       value: BoardSVG.Dots,
       className: [],
-      onClick: testCLick,
+      // onClick: testCLick,
     });
 
     columnHeader.append(`${this.name}`, ButtonDots.render());
@@ -69,7 +69,7 @@ export default class Column {
     const ButtonAdd = new ButtonWithIcon({
       value: 'Add new card',
       className: ['button-add'],
-      onClick: testCLick,
+      // onClick: testCLick,
       svg: BoardSVG.Add,
     });
 

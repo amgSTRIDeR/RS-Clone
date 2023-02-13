@@ -1,4 +1,4 @@
-import createElement from '../../../utils/createe-element';
+import createElement from '../../../utils/create-element';
 import Card from '../Card/Card';
 import Column from '../Column/Column';
 import BoardHeader from './BoardHeader';

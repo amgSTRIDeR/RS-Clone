@@ -49,12 +49,7 @@ export default class Header {
       ['flex', 'flex-col', 'items-end', 'justify-self-end', 'text-secondary'],
       'nav-container',
     );
-    this.headerNav = new HeaderNav(
-      this.container,
-      this.navContainer,
-      this.theme,
-      this.lang,
-    );
+    this.headerNav = new HeaderNav(this.container, this.navContainer, this.theme, this.lang);
   }
 
   render() {
@@ -102,7 +97,6 @@ export default class Header {
     this.searchWrapper.appendChild(searchInput);
     header.appendChild(this.searchWrapper);
 
-  
     header.appendChild(this.navContainer);
 
     this.accountButton.setAttribute('data-i18n-title', 'accountInfo');

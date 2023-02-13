@@ -1,4 +1,4 @@
-import createElement from '../../../utils/createe-element';
+import createElement from '../../../utils/create-element';
 import BoardSVG from '../Board/Board-svg';
 import { ICardProps } from './Card.types';
 

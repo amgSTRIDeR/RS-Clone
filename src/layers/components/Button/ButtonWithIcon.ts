@@ -1,4 +1,4 @@
-import createElement from '../../../utils/createe-element';
+import createElement from '../../../utils/create-element';
 import Button from './Button';
 import { IButtonWithIconProps } from './Button.types';
 

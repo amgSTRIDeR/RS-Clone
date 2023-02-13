@@ -1,5 +1,5 @@
-import createElement from '../../../utils/createe-element';
-import testCLick from '../../../utils/test-click';
+import createElement from '../../../utils/create-element';
+// import testCLick from '../../../utils/test-click';
 import Button from '../Button/Button';
 import ButtonWithIcon from '../Button/ButtonWithIcon';
 import BoardSVG from './Board-svg';
@@ -30,20 +30,20 @@ export default class BoardHeader {
     const ButtonStar = new Button({
       value: BoardSVG.Star,
       className: [],
-      onClick: testCLick,
+      // onClick: testCLick,
     });
 
     const ButtonFilter = new ButtonWithIcon({
       value: 'Filter',
       className: [],
-      onClick: testCLick,
+      // onClick: testCLick,
       svg: BoardSVG.Filter,
     });
 
     const ButtonDots = new Button({
       value: BoardSVG.Dots,
       className: [],
-      onClick: testCLick,
+      // onClick: testCLick,
     });
 
     boardHeaderCol.append(ButtonStar.render(), ButtonFilter.render());
