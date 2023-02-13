@@ -1,4 +1,6 @@
+
 import Board from '../components/Board/Board';
+import initI18next from '../../utils/init-i18next';
 import Footer from '../components/Footer/Footer';
 import Header from '../components/Header/Header';
 // import Start from '../components/Start/Start';
@@ -27,6 +29,10 @@ export default class View {
     this.header.render();
     this.board.render();
     // this.start.render();
+
+    initI18next();
+
     this.footer.render();
+    this.header.render();
   }
 }

@@ -1,4 +1,4 @@
-import createElement from '../../../utils/createe-element';
+import createElement from '../../../utils/create-element';
 import FooterSVG from './Footer-svg';
 
 export default class Footer {
@@ -11,7 +11,17 @@ export default class Footer {
   public render(): void {
     const footer = createElement(
       'footer',
-      ['px-[2vw]', 'h-[60px]', 'bg-base-100', 'flex', 'justify-around', 'items-center', 'grow-0', 'basis-auto', 'shrink-0'],
+      [
+        'px-[2vw]',
+        'h-[60px]',
+        'bg-base-100',
+        'flex',
+        'justify-around',
+        'items-center',
+        'grow-0',
+        'basis-auto',
+        'shrink-0',
+      ],
       'footer',
     );
 
@@ -29,7 +39,7 @@ export default class Footer {
       FooterSVG.Github,
     );
     githubLinkFirst.href = 'https://github.com/A-nastasi-a';
-    githubLinkFirst.title = "Visit Anastasia's Github";
+    githubLinkFirst.setAttribute('data-i18n-title', 'githubAnastasia');
 
     const githubLinkSecond: HTMLLinkElement = createElement(
       'a',
@@ -45,7 +55,7 @@ export default class Footer {
       FooterSVG.Github,
     );
     githubLinkSecond.href = 'https://github.com/llallonen';
-    githubLinkSecond.title = "Visit Valeria's Github";
+    githubLinkSecond.setAttribute('data-i18n-title', 'githubValeria');
 
     const githubLinkThird: HTMLLinkElement = createElement(
       'a',
@@ -61,12 +71,12 @@ export default class Footer {
       FooterSVG.Github,
     );
     githubLinkThird.href = 'https://github.com/amgSTRIDeR';
-    githubLinkThird.title = "Visit Aleksei's Github";
+    githubLinkThird.setAttribute('data-i18n-title', 'githubAleksei');
 
     const year = createElement('p', ['text-xl', 'text-secondary']);
     year.textContent = '2023';
 
-    const RsLink: HTMLLinkElement = createElement(
+    const rsLink: HTMLLinkElement = createElement(
       'a',
       [
         'w-[100px]',
@@ -80,14 +90,14 @@ export default class Footer {
       '',
       FooterSVG.Rsschool,
     );
-    RsLink.href = 'https://rs.school/js/';
-    RsLink.title = "Visit RSSchool's page";
+    rsLink.href = 'https://rs.school/js/';
+    rsLink.setAttribute('data-i18n-title', 'rsschoolLogo');
 
     footer.appendChild(githubLinkFirst);
     footer.appendChild(githubLinkSecond);
     footer.appendChild(githubLinkThird);
     footer.appendChild(year);
-    footer.appendChild(RsLink);
+    footer.appendChild(rsLink);
 
     this.container.append(footer);
   }
