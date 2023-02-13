@@ -7,4 +7,19 @@
   min-height: 100vh;
 }
 
+button svg {
+  height: 100%;
+}
 
+.card:hover .card__hover-pen {
+  opacity: 1;
+}
+
+.card__button-add:hover span {
+  opacity: 1;
+}
+
+button.button-add {
+  width: 100%;
+  order: 2;
+}
