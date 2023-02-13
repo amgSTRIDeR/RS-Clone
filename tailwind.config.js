@@ -747,6 +747,7 @@ module.exports = {
     screens: {
       sm: '460px',
       md: '920px',
+      mdHead: '1150px',
       lg: '1024px',
       xl: '1280px',
       '2xl': '1536px',
