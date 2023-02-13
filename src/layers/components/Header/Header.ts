@@ -102,6 +102,7 @@ export default class Header {
     this.searchWrapper.appendChild(searchInput);
     header.appendChild(this.searchWrapper);
 
+  
     header.appendChild(this.navContainer);
 
     this.accountButton.setAttribute('data-i18n-title', 'accountInfo');

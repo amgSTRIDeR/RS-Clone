@@ -957,6 +957,46 @@ module.exports = {
   },
   plugins: [require('daisyui')],
   daisyui: {
-    themes: ['corporate', 'autumn', 'night'],
+    themes: [
+      {
+        corporate: {
+          ...require('daisyui/src/colors/themes')['[data-theme=corporate]'],
+          '.primary': '#004ea0',
+          '.bg-basic': {
+            'background-color': '#b5d3ff6b',
+          },
+          '.bg-basic-2': {
+            'background-color': '#fff',
+          },
+          '.bg-basic-3': {
+            'background-color': '#dde7f5ab',
+          },
+        },
+        autumn: {
+          ...require('daisyui/src/colors/themes')['[data-theme=autumn]'],
+          '.bg-basic': {
+            'background-color': '#ffe1e1ab',
+          },
+          '.bg-basic-2': {
+            'background-color': '#ffffffab',
+          },
+          '.bg-basic-3': {
+            'background-color': '#dde7f5ab',
+          },
+        },
+        night: {
+          ...require('daisyui/src/colors/themes')['[data-theme=night]'],
+          '.bg-basic': {
+            'background-color': '#93c5ff29',
+          },
+          '.bg-basic-2': {
+            'background-color': '#93c5ff30',
+          },
+          '.bg-basic-3': {
+            'background-color': '#dde7f5ab',
+          },
+        },
+      },
+    ],
   },
 };
