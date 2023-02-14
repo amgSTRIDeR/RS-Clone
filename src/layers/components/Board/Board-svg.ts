@@ -62,6 +62,7 @@ xmlns="http://www.w3.org/2000/svg"
   d="M10.719 13.281h6.781v2.219h-6.781v6.813h-2.25v-6.813h-6.781v-2.219h6.781v-6.781h2.25v6.781z"
 ></path>
 </svg>`,
+Lines = `<svg width="20px" height="20px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="#000000"><path d="M6 12v-1h4v1H6zM4 7h8v1H4V7zm10-4v1H2V3h12z"/></svg>`
 }
 
 export default BoardSVG;

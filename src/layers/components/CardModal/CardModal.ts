@@ -61,16 +61,22 @@ export default class CardModal extends Card {
     ]);
 
     const cardModalHeader = createlement('div', ['card__modal', 'flex', 'justify-between']);
-    const cardModalTitle = createlement('h3', ['card-modal__title'], '', `${this.name}`);
+    const cardModalTitle = createlement('h3', ['card-modal__title', 'mb-6'], '', `${this.name}`);
 
     cardModalHeader.append(cardModalTitle);
 
+    const cardModalDetails = createlement('div', ['card__details', 'flex', 'gap-5']);
+
     const cardModalBody = createlement('div', ['card-modal__body']);
-    const cardModalDescription = createlement('div', ['board__desc'], '', 'This is description');
+
+    const cardModalDescriptionContainer = createlement('div', ['board__desc-box', 'flex', 'gap-3', 'my-5']);
+    const descriptionText = createlement('div', ['board__desc-text'], '', 'This description text');
+    const cardModalDescription = createlement('div', ['board__desc'], '', `${BoardSVG.Lines}`);
+    cardModalDescriptionContainer.append(cardModalDescription, descriptionText);
 
     const descriptionEditor = new Editor(cardModalBody);
 
-    const cardModalMemberContainer = createlement('div', ['card__members', 'flex']);
+    const cardModalMemberContainer = createlement('div', ['card__members', 'flex', 'gap-3']);
     const cardModalMember = createlement(
       'div',
       [
@@ -94,14 +100,18 @@ export default class CardModal extends Card {
     });
     cardModalMemberContainer.append(cardModalMember, cardModalMemberButton.render());
 
-    const cardModalMarksContainer = createlement('div', ['card__marks', 'flex']);
+    const cardModalMarksContainer = createlement('div', ['card__marks', 'flex', 'items-center', 'gap-3']);
     const cardModalMark = createlement(
       'div',
       [
         'card__mark',
+        'flex',
+        'justify-center',
+        'items-center',
         'w-auto',
+        'h-[20px]',
         'text-xs',
-        'text-center',
+        'px-2',
         'border',
         'border-secondary',
         'bg-secondary',
@@ -116,10 +126,11 @@ export default class CardModal extends Card {
     });
     cardModalMarksContainer.append(cardModalMark, cardModalMarkButton.render());
 
+    cardModalDetails.append(cardModalMemberContainer, cardModalMarksContainer);
+
     cardModalBody.append(
-      cardModalMemberContainer,
-      cardModalMarksContainer,
-      cardModalDescription,
+      cardModalDetails,
+      cardModalDescriptionContainer,
       descriptionEditor.render(),
     );
     cardModal.append(cardModalHeader, cardModalBody);

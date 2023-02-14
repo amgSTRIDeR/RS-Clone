@@ -1,5 +1,6 @@
 import createElement from '../../../utils/create-element';
 import Card from '../Card/Card';
+import CardModal from '../CardModal/CardModal';
 import Column from '../Column/Column';
 import BoardHeader from './BoardHeader';
 
@@ -42,6 +43,17 @@ export default class Board {
     }).render();
 
     new Card({
+      container: column,
+      name: 'name',
+      description: 'description',
+      table: 'table',
+      column: 'column',
+      comments: ['comments'],
+      users: ['users'],
+      creator: 'creator',
+    }).render();
+
+    new CardModal({
       container: column,
       name: 'name',
       description: 'description',

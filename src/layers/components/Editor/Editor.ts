@@ -1,7 +1,7 @@
 import createElement from '../../../utils/create-element';
 import testCLick from '../../../utils/test-click';
 import Button from '../Button/Button';
-import ButtonWithIcon from '../Button/ButtonTextWithIcon';
+import ButtonWithIcon from '../Button/ButtonWithIcon';
 import { EditorSVG } from './EditorSVG';
 
 export default class Editor {
@@ -15,12 +15,14 @@ export default class Editor {
     const editor = createElement('div', ['editor']);
 
     const editorBody = createElement('div', ['editor__body', 'border']);
-    const editorControlsPanel = createElement('div', ['editor__controls', 'flex', 'px-4', 'py-3']);
+    const editorControlsPanel = createElement('div', ['editor__controls', 'flex', 'gap-6', 'px-4', 'py-3']);
+    const editorControlsText = createElement('div', ['editor__text', 'flex', 'gap-1']);
+    const editorControlsMaterials = createElement('div', ['editor__materials', 'flex', 'gap-1']);
 
     const ButtonTextBold = new ButtonWithIcon({
       className: ['button-only-icon'],
       onClick: testCLick,
-      svg: EditorSVG.Link,
+      svg: EditorSVG.Bold,
     }).render();
 
     const ButtonTextItalic = new ButtonWithIcon({
@@ -33,13 +35,13 @@ export default class Editor {
       className: ['button-only-icon'],
       onClick: testCLick,
       svg: EditorSVG.Underline,
-    });
+    }).render();
 
     const ButtonLink = new ButtonWithIcon({
       className: ['button-only-icon'],
       onClick: testCLick,
       svg: EditorSVG.Link,
-    });
+    }).render();
 
     const ButtonImage = new ButtonWithIcon({
       className: ['button-only-icon'],
@@ -53,13 +55,21 @@ export default class Editor {
       svg: EditorSVG.Add,
     }).render();
 
-    editorControlsPanel.append(
+    editorControlsText.append(
       ButtonTextBold,
       ButtonTextItalic,
-      ButtonTextUnderline.render(),
-      ButtonLink.render(),
+      ButtonTextUnderline,
+    );
+
+    editorControlsMaterials.append(
+      ButtonLink,
       ButtonImage,
       ButtonEditorAdd,
+    );
+
+    editorControlsPanel.append(
+      editorControlsText,
+      editorControlsMaterials,
     );
 
     const editorTextarea = createElement('textarea', [
@@ -86,7 +96,7 @@ export default class Editor {
       onClick: testCLick,
     }).render();
 
-    const editSaveOrDiscard = createElement('div', ['flex', 'gap-5']);
+    const editSaveOrDiscard = createElement('div', ['flex', 'gap-5', 'mt-5']);
     editSaveOrDiscard.append(ButtonSave, ButtonDiscard);
 
     editorBody.append(editorControlsPanel, editorTextarea);

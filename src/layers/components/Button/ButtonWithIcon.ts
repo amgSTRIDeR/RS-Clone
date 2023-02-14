@@ -23,7 +23,7 @@ export default class ButtonWithIcon extends Button {
         'flex',
         'items-center',
         'gap-2',
-        'w-[100px]',
+        'w-[30px]',
         'h-[30px]',
         'p-[3px]',
         'rounded',
