@@ -1,14 +1,16 @@
 import changeLang from '../../../utils/change-lang';
 import changeTheme from '../../../utils/change-theme';
 import createElement from '../../../utils/create-element';
+import LanguageManager from '../../shared/language-manager';
+import ThemeManager from '../../shared/theme-manager';
 import HeaderSVG from './Header-svg';
 
 export default class HeaderNav {
   container: HTMLElement;
 
-  theme: string;
+  theme: ThemeManager;
 
-  lang: string;
+  lang: LanguageManager;
 
   navContainer: HTMLElement;
 
@@ -21,12 +23,10 @@ export default class HeaderNav {
   constructor(
     container: HTMLElement,
     navContainer: HTMLElement,
-    theme: string = 'corporate',
-    lang: string = 'en',
   ) {
     this.container = container;
-    this.theme = theme;
-    this.lang = lang;
+    this.theme = ThemeManager.getInstance();
+    this.lang = LanguageManager.getInstance();
     this.navContainer = navContainer;
     this.navWorkspaces = createElement(
       'li',
@@ -154,7 +154,7 @@ export default class HeaderNav {
     buttonBlack.setAttribute('data-i18n-title', 'blackTheme');
     navThemes.appendChild(buttonBlack);
 
-    switch (this.theme) {
+    switch (this.theme.getTheme()) {
       case 'autumn':
         buttonLight.classList.add('hover:fill-secondary-focus');
         buttonDark.classList.add('fill-primary');
@@ -175,15 +175,21 @@ export default class HeaderNav {
     }
 
     buttonLight.addEventListener('click', () => {
-      changeTheme('corporate', this.container, buttonLight, buttonDark, buttonBlack);
+      const theme = 'corporate';
+      this.theme.setTheme(theme);
+      changeTheme(theme, this.container, buttonLight, buttonDark, buttonBlack);
     });
 
     buttonDark.addEventListener('click', () => {
-      changeTheme('autumn', this.container, buttonDark, buttonLight, buttonBlack);
+      const theme = 'autumn';
+      this.theme.setTheme(theme);
+      changeTheme(theme, this.container, buttonDark, buttonLight, buttonBlack);
     });
 
     buttonBlack.addEventListener('click', () => {
-      changeTheme('night', this.container, buttonBlack, buttonLight, buttonDark);
+      const theme = 'night';
+      this.theme.setTheme(theme);
+      changeTheme(theme, this.container, buttonBlack, buttonLight, buttonDark);
     });
 
     const navLang = createElement('li', ['text-secondary', 'flex']);
@@ -200,15 +206,15 @@ export default class HeaderNav {
     navLang.addEventListener('click', (event) => {
       if (event.target instanceof HTMLButtonElement) {
         const [, language] = event.target.id.split('-');
-        this.lang = language;
-        changeLang(this.lang, buttonRu, buttonEn, buttonUk);
+        this.lang.setLanguage(language);
+        changeLang(language, buttonRu, buttonEn, buttonUk);
       }
     });
 
     navMenu.appendChild(navThemes);
     navMenu.appendChild(navLang);
     this.navContainer.appendChild(navMenu);
-    changeLang(this.lang, buttonRu, buttonEn, buttonUk);
+    changeLang(this.lang.getLanguage(), buttonRu, buttonEn, buttonUk);
   }
 
   renew(isAuthenticated: boolean) {

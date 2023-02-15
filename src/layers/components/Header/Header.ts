@@ -5,12 +5,6 @@ import HeaderSVG from './Header-svg';
 export default class Header {
   container: HTMLElement;
 
-  theme: string;
-
-  lang: string;
-
-  isAuthenticated: boolean;
-
   searchWrapper: HTMLElement;
 
   accountButton: HTMLDivElement;
@@ -21,16 +15,8 @@ export default class Header {
 
   headerNav;
 
-  constructor(
-    container: HTMLElement,
-    theme: string = 'corporate',
-    lang: string = 'en',
-    isAuthenticated: boolean = false,
-  ) {
+  constructor(container: HTMLElement) {
     this.container = container;
-    this.theme = theme;
-    this.lang = lang;
-    this.isAuthenticated = isAuthenticated;
     this.searchWrapper = createElement('div', ['relative']);
     this.accountButton = createElement('div', [
       'rounded-full',
@@ -49,7 +35,10 @@ export default class Header {
       ['flex', 'flex-col', 'items-end', 'justify-self-end', 'text-secondary'],
       'nav-container',
     );
-    this.headerNav = new HeaderNav(this.container, this.navContainer, this.theme, this.lang);
+    this.headerNav = new HeaderNav(
+      this.container,
+      this.navContainer,
+    );
   }
 
   render() {
@@ -67,8 +56,14 @@ export default class Header {
         'items-center',
       ],
       'header',
-      HeaderSVG.Logo,
     );
+
+    const mainLogo = createElement('div', [], '', HeaderSVG.Logo);
+    mainLogo.setAttribute('data-i18n-title', 'logo');
+    mainLogo.addEventListener('click', () => {
+      window.location.hash = '';
+    });
+    header.appendChild(mainLogo);
 
     this.searchWrapper.innerHTML = HeaderSVG.MagnifyingGlass;
     const searchInput = createElement(
@@ -104,10 +99,12 @@ export default class Header {
 
     this.loginButton.title = 'Log In';
     this.loginButton.innerHTML = HeaderSVG.Login;
+    this.loginButton.addEventListener('click', () => {
+      window.location.hash = '/login';
+    });
     header.appendChild(this.loginButton);
 
     this.container.prepend(header);
-    this.renew(this.isAuthenticated);
     this.headerNav.render();
   }
 

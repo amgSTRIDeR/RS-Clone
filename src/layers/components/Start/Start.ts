@@ -50,6 +50,9 @@ export default class Start {
       'button-signup',
     );
     signupButton.setAttribute('data-i18n', 'signupButton');
+    signupButton.addEventListener('click', () => {
+      window.location.hash = '/signup';
+    });
 
     const videoButton = createElement(
       'button',

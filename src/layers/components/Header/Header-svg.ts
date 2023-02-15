@@ -1,6 +1,5 @@
 const enum HeaderSVG {
-  Logo = `<div data-i18n-title='logo'>
-    <svg class="main-logo w-[100px] h-[30px] group cursor-pointer" viewBox="0 0 312 64"
+  Logo = `<svg class="w-[100px] h-[30px] group cursor-pointer" viewBox="0 0 312 64"
     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <g class="fill-primary group-hover:fill-primary-focus" fill-rule="evenodd">
       <path
@@ -26,8 +25,7 @@ const enum HeaderSVG {
         </path>
       </g>
     </g>
-    </svg>
-  </div>`,
+    </svg>`,
   ArrowDown = `<svg
   class="w-[15px] ml-[5px] mt-[5px] fill-secondary group-hover:fill-secondary-focus"
   xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision" text-rendering="geometricPrecision"
