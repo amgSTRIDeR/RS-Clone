@@ -34,6 +34,7 @@ export default class CardModal extends Card {
   render() {
     const overlay = createlement('div', [
       'overlay',
+      'hidden',
       'absolute',
       'top-0',
       'left-0',

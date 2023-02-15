@@ -22,7 +22,6 @@ export default class ButtonWithIcon extends Button {
         'button',
         'flex',
         'items-center',
-        'gap-2',
         'w-[30px]',
         'h-[30px]',
         'p-[3px]',
