@@ -1,4 +1,4 @@
-import createElement from '../../../utils/createe-element';
+import createElement from '../../../utils/create-element';
 import { IButtonProps } from './Button.types';
 
 export default class Button {
@@ -19,10 +19,15 @@ export default class Button {
       'button',
       [
         'button',
-        'w-[30px]',
+        'flex',
+        'justify-center',
+        'items-center',
+        'min-w-[100px]',
+        'w-auto',
         'h-[30px]',
         'p-[3px]',
         'rounded',
+        'text-center',
         'text-primary',
         'border-2',
         'border-primary',

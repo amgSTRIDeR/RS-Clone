@@ -6,6 +6,6 @@ export interface IButtonProps {
   onClick?: VoidFunction;
 }
 
-export interface IButtonWithIconProps extends IButtonProps {
+export interface IButtonTextWithIconProps extends IButtonProps {
   svg: string;
 }

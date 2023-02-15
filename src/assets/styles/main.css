@@ -11,6 +11,15 @@ button svg {
   height: 100%;
 }
 
+button.button-only-icon {
+  width: 30px;
+  gap: 0;
+}
+
+button.only-icon svg {
+  height: 100%;
+  width: 100%;
+}
 .card:hover .card__hover-pen {
   opacity: 1;
 }

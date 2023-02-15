@@ -1,4 +1,4 @@
-import createElement from '../../../utils/createe-element';
+import createElement from '../../../utils/create-element';
 import testCLick from '../../../utils/test-click';
 import Button from '../Button/Button';
 import ButtonWithIcon from '../Button/ButtonWithIcon';
