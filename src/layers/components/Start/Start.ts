@@ -84,7 +84,7 @@ export default class Start {
     const startImage = createElement('img', ['w-fit']) as HTMLImageElement;
     startImage.src = 'https://wac-cdn.atlassian.com/dam/jcr:015eb45b-2d77-4dc9-961e-b2fdc1843da0/Jira.svg?cdnVersion=755';
 
-    const mainElement = createElement('main', [], 'main');
+    const mainElement = createElement('main', ['min-h-[calc(100vh_-_120px)]', 'flex', 'items-center'], 'main');
     const startWrapper = createElement('div', [
       'flex',
       'md:flex-row',

@@ -1,3 +1,5 @@
+
+import Board from '../components/Board/Board';
 import initI18next from '../../utils/init-i18next';
 import Board from '../components/Board/Board';
 import Footer from '../components/Footer/Footer';
@@ -36,10 +38,11 @@ export default class View {
   }
 
   private render(): void {
-    initI18next();
-    // this. start.render();
+    this.header.render();
     this.board.render();
     this.userPopup.render();
+    // this.start.render();
+    initI18next();
     this.footer.render();
     this.header.render();
   }
