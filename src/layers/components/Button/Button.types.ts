@@ -3,7 +3,7 @@ export interface IButtonProps {
 
   className?: string[];
 
-  onClick?: VoidFunction;
+  onClick: VoidFunction;
 }
 
 export interface IButtonTextWithIconProps extends IButtonProps {

@@ -30,7 +30,7 @@ export default class Card {
     creator,
   }: ICardProps) {
     this.container = container;
-    this.name = name;
+    this.name = name ?? 'Card name';
     this.description = description;
     this.table = table;
     this.column = column;

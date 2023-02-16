@@ -52,6 +52,7 @@ export default class Column {
         'column',
         'flex',
         'flex-col',
+        'min-w-[230px]',
         'w-[230px]',
         'gap-[10px]',
         'p-[6px]',
@@ -67,7 +68,7 @@ export default class Column {
     const ButtonAdd = new ButtonWithIcon({
       value: 'Add new card',
       className: ['button-add'],
-      onClick: testCLick,
+      onClick: this.createNewCard,
       svg: BoardSVG.Add,
     });
 
@@ -75,5 +76,21 @@ export default class Column {
 
     this.container.append(column);
     return column;
+  }
+
+  createNewCard() {
+    const currColumn = this;
+    console.log(typeof currColumn);
+
+    // new Card({
+    //   container: currColumn,
+    //   name: 'name',
+    //   description: 'description',
+    //   table: 'table',
+    //   column: 'column',
+    //   comments: ['comments'],
+    //   users: ['users'],
+    //   creator: 'creator',
+    // }).render();
   }
 }

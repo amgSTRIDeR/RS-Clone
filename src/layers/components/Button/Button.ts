@@ -6,12 +6,12 @@ export default class Button {
 
   className: string[] = [''];
 
-  onClick: Function | null;
+  onClick: Function;
 
   constructor({ value, className, onClick }: IButtonProps) {
     this.value = value ?? '';
     this.className = className ?? [''];
-    this.onClick = onClick ?? null;
+    this.onClick = onClick;
   }
 
   render() {
@@ -42,10 +42,10 @@ export default class Button {
       `${this.value}`,
     );
 
-    ButtonInstance.addEventListener('click', () => this.onClick);
+    ButtonInstance.addEventListener('click', () => {
+      this.onClick();
+    });
 
     return ButtonInstance;
   }
-
-  onClickHandle = () => this.onClick;
 }

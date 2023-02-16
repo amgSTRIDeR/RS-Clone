@@ -16,7 +16,7 @@ export default class BoardHeader {
       'board__header',
       'flex',
       'items-center',
-      'w-full',
+      'w-[100%]',
       'gap-4',
       'pt-3',
       'pb-5',

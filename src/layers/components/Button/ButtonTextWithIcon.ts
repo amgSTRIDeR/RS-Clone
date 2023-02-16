@@ -23,9 +23,10 @@ export default class ButtonTextWithIcon extends Button {
         'flex',
         'items-center',
         'gap-2',
-        'w-[100px]',
+        'w-max',
         'h-[30px]',
         'p-[3px]',
+        'pr-[5px]',
         'rounded',
         'border-primary',
         'text-primary',
@@ -41,6 +42,11 @@ export default class ButtonTextWithIcon extends Button {
       '',
       `${this.svg} <span>${this.value}</span>`,
     );
+
+    ButtonInstance.addEventListener('click', () => {
+      this.onClick();
+    });
+
     return ButtonInstance;
   }
 }

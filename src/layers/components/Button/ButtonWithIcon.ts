@@ -40,6 +40,11 @@ export default class ButtonWithIcon extends Button {
       '',
       `${this.svg} <span>${this.value}</span>`,
     );
+
+    ButtonInstance.addEventListener('click', () => {
+      this.onClick();
+    });
+
     return ButtonInstance;
   }
 }

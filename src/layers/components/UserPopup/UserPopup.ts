@@ -16,6 +16,7 @@ export default class UserPopup {
   render() {
     const userPopup = createElement('div', [
       'fixed',
+      'hidden',
       'w-[240px]',
       'top-0',
       'right-0',
