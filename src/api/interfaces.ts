@@ -25,7 +25,8 @@ export interface IBoardPayload {
   imageURL: string,
   creator: string,
   members: string[],
-  columns: string[]
+  columns: string[],
+  starred: boolean,
 }
 
 export interface IBoard extends IBoardPayload {
