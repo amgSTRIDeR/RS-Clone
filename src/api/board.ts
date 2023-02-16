@@ -1,4 +1,3 @@
-/* eslint-disable class-methods-use-this */
 import { baseURL, Path } from './variables';
 import { IBoardPayload, IBoard, IMsg } from './interfaces';
 
@@ -65,6 +64,7 @@ export class HttpBoard {
     const data = await response.json().catch((err: Error) => {
       throw err;
     }) as IBoard[];
+    console.log(data);
     return data;
   }
 }

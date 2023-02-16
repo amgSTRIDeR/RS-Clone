@@ -1,4 +1,3 @@
-/* eslint-disable class-methods-use-this */
 import { baseURL, Path } from './variables';
 import { ICardPayload, ICard, IMsg } from './interfaces';
 // ICardPayload, ICard, IMsg
