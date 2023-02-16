@@ -64,7 +64,6 @@ export class HttpBoard {
     const data = await response.json().catch((err: Error) => {
       throw err;
     }) as IBoard[];
-    console.log(data);
     return data;
   }
 }
