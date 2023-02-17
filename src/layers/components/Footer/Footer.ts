@@ -18,8 +18,6 @@ export default class Footer {
         'flex',
         'justify-around',
         'items-center',
-        'grow-0',
-        'basis-auto',
         'shrink-0',
       ],
       'footer',

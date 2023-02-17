@@ -746,6 +746,7 @@ module.exports = {
     },
     screens: {
       sm: '460px',
+      midmd: '640px',
       md: '920px',
       mdHead: '1150px',
       lg: '1024px',
@@ -971,6 +972,9 @@ module.exports = {
           '.bg-basic-3': {
             'background-color': '#dde7f5ab',
           },
+          '.bg-semiblack': {
+            'background-color': '#000000db',
+          },
         },
         autumn: {
           ...require('daisyui/src/colors/themes')['[data-theme=autumn]'],
@@ -983,6 +987,9 @@ module.exports = {
           '.bg-basic-3': {
             'background-color': '#dde7f5ab',
           },
+          '.bg-semiblack': {
+            'background-color': '#000000db',
+          },
         },
         night: {
           ...require('daisyui/src/colors/themes')['[data-theme=night]'],
@@ -994,6 +1001,9 @@ module.exports = {
           },
           '.bg-basic-3': {
             'background-color': '#dde7f5ab',
+          },
+          '.bg-semiblack': {
+            'background-color': '#000000db',
           },
         },
       },

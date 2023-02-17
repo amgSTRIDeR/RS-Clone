@@ -1,4 +1,3 @@
-/* eslint-disable class-methods-use-this */
 import { baseURL, Path } from './variables';
 import { IBoardPayload, IBoard, IMsg } from './interfaces';
 

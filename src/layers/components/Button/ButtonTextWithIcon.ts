@@ -2,7 +2,7 @@ import createElement from '../../../utils/create-element';
 import Button from './Button';
 import { IButtonTextWithIconProps } from './Button.types';
 
-export default class ButtonWithIcon extends Button {
+export default class ButtonTextWithIcon extends Button {
   svg?: string;
 
   constructor({
@@ -22,7 +22,8 @@ export default class ButtonWithIcon extends Button {
         'button',
         'flex',
         'items-center',
-        'w-[30px]',
+        'gap-2',
+        'w-[100px]',
         'h-[30px]',
         'p-[3px]',
         'rounded',

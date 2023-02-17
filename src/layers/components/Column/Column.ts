@@ -1,7 +1,6 @@
 import createElement from '../../../utils/create-element';
-// import testCLick from '../../../utils/test-click';
+import testCLick from '../../../utils/test-click';
 import BoardSVG from '../Board/Board-svg';
-import Button from '../Button/Button';
 import ButtonWithIcon from '../Button/ButtonWithIcon';
 import { IColumnProps } from './Column.types';
 
@@ -39,10 +38,10 @@ export default class Column {
       'rounded',
     ]);
 
-    const ButtonDots = new Button({
-      value: BoardSVG.Dots,
+    const ButtonDots = new ButtonWithIcon({
       className: [],
-      // onClick: testCLick,
+      onClick: testCLick,
+      svg: BoardSVG.Dots,
     });
 
     columnHeader.append(`${this.name}`, ButtonDots.render());
@@ -53,8 +52,7 @@ export default class Column {
         'column',
         'flex',
         'flex-col',
-        'min-w-[230px]',
-        'max-w-400',
+        'w-[230px]',
         'gap-[10px]',
         'p-[6px]',
         'bg-basic',

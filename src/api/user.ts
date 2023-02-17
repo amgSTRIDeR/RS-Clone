@@ -1,4 +1,3 @@
-/* eslint-disable class-methods-use-this */
 import { baseURL, Path } from './variables';
 import { IUser, IUserLogin, IUserPayload } from './interfaces';
 
@@ -49,7 +48,6 @@ export class HttpUser {
     return data;
   }
 
-  // ломает сервер
   async deleteUser(id: string) {
     const response = await fetch(`${baseURL}${Path.users}${id}`, {
       method: 'DELETE',
