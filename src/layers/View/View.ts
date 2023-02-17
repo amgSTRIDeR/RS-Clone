@@ -15,7 +15,7 @@ const currentUser: IUserPayload = {
   username: 'CURRENTUSER',
   password: '12345678',
   roles: ['admin'],
-  tables: ['table1', 'table2'],
+  tables: ['table1', 'table2', 'table1', 'table2', 'table1', 'table2', 'table1', 'table2'],
   starredTables: ['starred table1', 'starred table2'],
   cards: [],
 };
@@ -39,7 +39,7 @@ export default class View {
 
   mainContainer = createElement(
     'main',
-    ['h-full', 'items-center', 'justify-around'],
+    ['flex', 'h-full', 'flex-grow'],
     'main',
   );
 
@@ -55,7 +55,7 @@ export default class View {
 
   render(): void {
     if (this.isAuthenticated.checkToken()) {
-      this.workspace.render();
+      this.board.render();
       this.userPopup.render();
     } else {
       this.start.render();
@@ -74,7 +74,7 @@ export default class View {
     this.mainContainer.innerHTML = '';
     this.header.renew();
     if (this.isAuthenticated.checkToken()) {
-      this.workspace.render();
+      this.board.render();
       this.userPopup.render();
     } else {
       this.start.render();

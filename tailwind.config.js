@@ -962,7 +962,7 @@ module.exports = {
       {
         corporate: {
           ...require('daisyui/src/colors/themes')['[data-theme=corporate]'],
-          '.bg-basic': {
+          '.basic': {
             'background-color': '#b5d3ff6b',
           },
           '.bg-basic-2': {
@@ -983,7 +983,7 @@ module.exports = {
         },
         autumn: {
           ...require('daisyui/src/colors/themes')['[data-theme=autumn]'],
-          '.bg-basic': {
+          '.basic': {
             'background-color': '#ffe1e1ab',
           },
           '.bg-basic-2': {
@@ -1004,7 +1004,7 @@ module.exports = {
         },
         night: {
           ...require('daisyui/src/colors/themes')['[data-theme=night]'],
-          '.bg-basic': {
+          '.basic': {
             'background-color': '#93c5ff29',
           },
           '.bg-basic-2': {
