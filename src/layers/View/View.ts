@@ -1,4 +1,3 @@
-
 import initI18next from '../../utils/init-i18next';
 import Board from '../components/Board/Board';
 import Footer from '../components/Footer/Footer';
@@ -10,7 +9,6 @@ import createElement from '../../utils/create-element';
 import NotificationMessage from '../components/notification-message/notification-message';
 import IUserProps from '../components/UserPopup/IUserProps';
 import UserPopup from '../components/UserPopup/UserPopup';
-
 
 const currentUser: IUserProps = {
   name: 'Name',
@@ -26,7 +24,7 @@ export default class View {
   private board: Board;
 
   private start: Start;
-  
+
   private userPopup: UserPopup;
 
   private footer: Footer;
@@ -51,12 +49,10 @@ export default class View {
   render(): void {
     if (this.isAuthenticated.checkToken()) {
       this.board.render();
+      this.userPopup.render();
     } else {
       this.start.render();
     }
-    
-    // Check this
-    this.userPopup.render();
 
     initI18next();
     LoadingModal.render(this.container);
