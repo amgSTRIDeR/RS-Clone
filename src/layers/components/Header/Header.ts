@@ -1,7 +1,7 @@
 import createElement from '../../../utils/create-element';
 import AuthenticateManager from '../../shared/authenticate-manager';
-import NotificationMessage from '../notification-message/notification-message';
 import SignModal from '../sign-modal/sign-modal';
+import UserPopup from '../UserPopup/UserPopup';
 import HeaderNav from './Header-nav';
 import HeaderSVG from './Header-svg';
 
@@ -22,9 +22,9 @@ export default class Header {
 
   signinModal: SignModal;
 
-  constructor(
-    container: HTMLElement,
-  ) {
+  userPopup: UserPopup;
+
+  constructor(container: HTMLElement, userPopup: UserPopup) {
     this.container = container;
     this.searchWrapper = createElement('div', ['relative']);
     this.accountButton = createElement(
@@ -50,6 +50,7 @@ export default class Header {
     );
     this.headerNav = new HeaderNav(this.container, this.navContainer);
     this.signinModal = new SignModal(this.container, 'in');
+    this.userPopup = userPopup;
   }
 
   render() {
@@ -122,8 +123,7 @@ export default class Header {
     this.renew();
 
     this.accountButton.addEventListener('click', () => {
-      this.authenticateManager.deleteToken();
-      NotificationMessage.showNotification('Logged out');
+      this.userPopup.show();
     });
   }
 

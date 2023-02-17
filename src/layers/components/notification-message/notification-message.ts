@@ -17,6 +17,7 @@ export default class NotificationMessage {
     'ease-in-out',
     'duration-1000',
     'z-20',
+    'pointer-events-none',
   ]);
 
   static render(container: HTMLElement) {
