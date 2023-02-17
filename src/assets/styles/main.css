@@ -7,6 +7,7 @@
   min-height: 100vh;
 }
 
+a svg,
 button svg {
   height: 100%;
 }
@@ -14,6 +15,10 @@ button svg {
 button.button-only-icon {
   width: 30px;
   gap: 0;
+}
+
+a svg {
+  width: 30px;
 }
 
 button.only-icon svg {

@@ -1,14 +1,14 @@
+import { IUserPayload } from '../../../api/interfaces';
 import createElement from '../../../utils/create-element';
 import AuthenticateManager from '../../shared/authenticate-manager';
 import NotificationMessage from '../notification-message/notification-message';
-import IUserProps from './IUserProps';
 import UserPopupBody from './UserPopupBody';
 import UserPopupHead from './UserPopupHeader';
 
 export default class UserPopup {
   container: HTMLElement;
 
-  currentUser: IUserProps;
+  currentUser: IUserPayload;
 
   authenticateManager = AuthenticateManager.getInstance();
 
@@ -26,7 +26,7 @@ export default class UserPopup {
     'hidden',
   ]);
 
-  constructor(container: HTMLElement, currentUser: IUserProps) {
+  constructor(container: HTMLElement, currentUser: IUserPayload) {
     this.container = container;
     this.currentUser = currentUser;
   }

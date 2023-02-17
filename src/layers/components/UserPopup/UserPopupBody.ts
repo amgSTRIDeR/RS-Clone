@@ -1,12 +1,12 @@
+import { IUserPayload } from '../../../api/interfaces';
 import createElement from '../../../utils/create-element';
-import IUserProps from './IUserProps';
 
 export default class UserPopupBody {
   container: HTMLElement;
 
-  currentUser: IUserProps;
+  currentUser: IUserPayload;
 
-  constructor(container: HTMLElement, currentUser: IUserProps) {
+  constructor(container: HTMLElement, currentUser: IUserPayload) {
     this.container = container;
     this.currentUser = currentUser;
   }
