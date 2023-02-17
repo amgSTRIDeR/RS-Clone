@@ -15,6 +15,7 @@ export default class Board {
     const board = createElement('section', [
       'board',
       'flex-wrap',
+      'items-center',
       'bg-basic',
       'flex-grow',
       'w-full',

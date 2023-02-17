@@ -33,16 +33,16 @@ export default class View {
 
   mainContainer = createElement(
     'main',
-    ['min-h-[calc(100vh_-_120px)]', 'flex', 'items-center', 'justify-around'],
+    ['h-full', 'items-center', 'justify-around'],
     'main',
   );
 
   constructor(container: HTMLElement) {
     this.container = container;
-    this.header = new Header(this.container);
     this.board = new Board(this.mainContainer);
     this.start = new Start(this.container, this.mainContainer);
     this.userPopup = new UserPopup(this.container, currentUser);
+    this.header = new Header(this.container, this.userPopup);
     this.footer = new Footer(this.container);
   }
 
@@ -69,6 +69,7 @@ export default class View {
     this.header.renew();
     if (this.isAuthenticated.checkToken()) {
       this.board.render();
+      this.userPopup.render();
     } else {
       this.start.render();
     }
