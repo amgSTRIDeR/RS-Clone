@@ -1,10 +1,21 @@
 import createElement from '../../../utils/create-element';
+import SignModal from '../sign-modal/sign-modal';
 
 export default class Start {
   container: HTMLElement;
 
-  constructor(container: HTMLElement) {
+  mainContainer: HTMLElement;
+
+  signupModal: SignModal;
+
+  constructor(
+    container: HTMLElement,
+    mainContainer: HTMLElement,
+  ) {
     this.container = container;
+    this.mainContainer = mainContainer;
+    this.signupModal = new SignModal(this.container, 'up');
+    this.signupModal.render();
   }
 
   public render(): void {
@@ -17,17 +28,11 @@ export default class Start {
       'gap-y-[5vw]',
     ]);
 
-    const startHeader = createElement(
-      'h1',
-      ['text-4xl', 'text-center', 'text-primary-focus'],
-    );
+    const startHeader = createElement('h1', ['text-4xl', 'text-center', 'text-primary-focus']);
     startHeader.setAttribute('data-i18n', 'startHeader');
     startInfoWrapper.appendChild(startHeader);
 
-    const startText = createElement(
-      'p',
-      ['text-2xl', 'text-center', 'text-primary'],
-    );
+    const startText = createElement('p', ['text-2xl', 'text-center', 'text-primary']);
     startText.setAttribute('data-i18n', 'startText');
     startInfoWrapper.appendChild(startText);
 
@@ -50,6 +55,9 @@ export default class Start {
       'button-signup',
     );
     signupButton.setAttribute('data-i18n', 'signupButton');
+    signupButton.addEventListener('click', () => {
+      this.signupModal.show();
+    });
 
     const videoButton = createElement(
       'button',
@@ -84,7 +92,6 @@ export default class Start {
     const startImage = createElement('img', ['w-fit']) as HTMLImageElement;
     startImage.src = 'https://wac-cdn.atlassian.com/dam/jcr:015eb45b-2d77-4dc9-961e-b2fdc1843da0/Jira.svg?cdnVersion=755';
 
-    const mainElement = createElement('main', ['min-h-[calc(100vh_-_120px)]', 'flex', 'items-center'], 'main');
     const startWrapper = createElement('div', [
       'flex',
       'md:flex-row',
@@ -96,10 +103,8 @@ export default class Start {
       'gap-y-[5vw]',
     ]);
 
-    mainElement.appendChild(startWrapper);
     startWrapper.appendChild(startInfoWrapper);
     startWrapper.appendChild(startImage);
-
-    this.container.append(mainElement);
+    this.mainContainer.appendChild(startWrapper);
   }
 }

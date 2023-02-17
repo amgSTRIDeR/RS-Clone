@@ -1,15 +1,12 @@
 import createElement from '../../../utils/create-element';
+import AuthenticateManager from '../../shared/authenticate-manager';
+import NotificationMessage from '../notification-message/notification-message';
+import SignModal from '../sign-modal/sign-modal';
 import HeaderNav from './Header-nav';
 import HeaderSVG from './Header-svg';
 
 export default class Header {
   container: HTMLElement;
-
-  theme: string;
-
-  lang: string;
-
-  isAuthenticated: boolean;
 
   searchWrapper: HTMLElement;
 
@@ -19,45 +16,45 @@ export default class Header {
 
   navContainer: HTMLElement;
 
-  headerNav;
+  headerNav: HeaderNav;
+
+  authenticateManager = AuthenticateManager.getInstance();
+
+  signinModal: SignModal;
 
   constructor(
     container: HTMLElement,
-    theme: string = 'corporate',
-    lang: string = 'en',
-    isAuthenticated: boolean = false,
   ) {
     this.container = container;
-    this.theme = theme;
-    this.lang = lang;
-    this.isAuthenticated = isAuthenticated;
     this.searchWrapper = createElement('div', ['relative']);
-    this.accountButton = createElement('div', [
-      'rounded-full',
-      'border-2',
-      'border-primary',
-      'w-[50px]',
-      'h-[50px]',
-      'hover:border-primary-focus',
-      'cursor-pointer',
-      'bg-secondary',
-      'hover:bg-secondary-focus',
-    ]);
+    this.accountButton = createElement(
+      'div',
+      [
+        'rounded-full',
+        'border-2',
+        'border-primary',
+        'w-[50px]',
+        'h-[50px]',
+        'hover:border-primary-focus',
+        'cursor-pointer',
+        'bg-secondary',
+        'hover:bg-secondary-focus',
+      ],
+      'account-button',
+    );
     this.loginButton = createElement('div');
     this.navContainer = createElement(
       'div',
       ['flex', 'flex-col', 'items-end', 'justify-self-end', 'text-secondary'],
       'nav-container',
     );
-    this.headerNav = new HeaderNav(
-      this.container,
-      this.navContainer,
-      this.theme,
-      this.lang,
-    );
+    this.headerNav = new HeaderNav(this.container, this.navContainer);
+    this.signinModal = new SignModal(this.container, 'in');
   }
 
   render() {
+    this.signinModal.render();
+
     const header = createElement(
       'header',
       [
@@ -72,8 +69,14 @@ export default class Header {
         'items-center',
       ],
       'header',
-      HeaderSVG.Logo,
     );
+
+    const mainLogo = createElement('div', [], '', HeaderSVG.Logo);
+    mainLogo.setAttribute('data-i18n-title', 'logo');
+    mainLogo.addEventListener('click', () => {
+      window.location.hash = '';
+    });
+    header.appendChild(mainLogo);
 
     this.searchWrapper.innerHTML = HeaderSVG.MagnifyingGlass;
     const searchInput = createElement(
@@ -109,17 +112,25 @@ export default class Header {
 
     this.loginButton.title = 'Log In';
     this.loginButton.innerHTML = HeaderSVG.Login;
+    this.loginButton.addEventListener('click', () => {
+      this.signinModal.show();
+    });
     header.appendChild(this.loginButton);
 
     this.container.prepend(header);
-    this.renew(this.isAuthenticated);
     this.headerNav.render();
+    this.renew();
+
+    this.accountButton.addEventListener('click', () => {
+      this.authenticateManager.deleteToken();
+      NotificationMessage.showNotification('Logged out');
+    });
   }
 
-  renew(isAuthenticated: boolean) {
-    this.headerNav.renew(isAuthenticated);
+  renew() {
+    this.headerNav.renew();
 
-    if (isAuthenticated) {
+    if (this.authenticateManager.checkToken()) {
       this.searchWrapper.style.display = '';
       this.accountButton.style.display = '';
       this.loginButton.style.display = 'none';

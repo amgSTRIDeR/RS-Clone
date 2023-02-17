@@ -38,7 +38,7 @@ export default class BoardHeader {
     const ButtonFilter = new ButtonTextWithIcon({
       value: 'Filter',
       className: [],
-      onClick: testCLick,
+      // onClick: testCLick,
       svg: BoardSVG.Filter,
     });
 

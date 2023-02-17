@@ -1,13 +1,13 @@
 import './assets/styles/main.css';
-import Presenter from './layers/Presenter/Presenter';
+import Controller from './layers/Controller/Controller';
 
 const initApp = (): void => {
   const container: HTMLElement | null = document.getElementById('body');
   if (!container) {
     return;
   }
-  const presenter = new Presenter(container);
-  presenter.render();
+  const controller = new Controller(container);
+  controller.render();
 };
 
 initApp();

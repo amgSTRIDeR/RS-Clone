@@ -1,5 +1,5 @@
 const enum BoardSVG {
-  Filter = `<svg fill="#000000" viewBox="0 0 24 24" id="filter-alt-2" data-name="Flat Line" xmlns="http://www.w3.org/2000/svg" class="icon flat-line"><path id="primary" d="M5,12H19M3,7H21M7,17H17" style="fill: none; stroke: rgb(0, 0, 0); stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></path></svg>`,
+  Filter = '<svg fill="#000000" viewBox="0 0 24 24" id="filter-alt-2" data-name="Flat Line" xmlns="http://www.w3.org/2000/svg" class="icon flat-line"><path id="primary" d="M5,12H19M3,7H21M7,17H17" style="fill: none; stroke: rgb(0, 0, 0); stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></path></svg>',
   Chevron = `<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
     viewBox="0 0 185.344 185.344" xml:space="preserve">
 <g>

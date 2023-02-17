@@ -67,7 +67,7 @@ export default class Column {
     const ButtonAdd = new ButtonWithIcon({
       value: 'Add new card',
       className: ['button-add'],
-      onClick: testCLick,
+      // onClick: testCLick,
       svg: BoardSVG.Add,
     });
 

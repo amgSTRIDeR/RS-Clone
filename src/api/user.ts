@@ -24,7 +24,11 @@ export class HttpUser {
         password,
       }),
     });
-    await response.json();
+    const data = await response.json();
+    return {
+      status: response.status,
+      data,
+    };
   }
 
   async getUserToken(username: string, password: string) {
