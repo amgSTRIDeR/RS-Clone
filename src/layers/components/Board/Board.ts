@@ -19,7 +19,7 @@ export default class Board {
       'bg-basic',
       'flex-grow',
       'w-full',
-      'min-h-[calc(100vh_-_120px)]',
+      'h-full',
       'px-[2vw]',
     ]);
 

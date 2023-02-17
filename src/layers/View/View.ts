@@ -33,7 +33,7 @@ export default class View {
 
   mainContainer = createElement(
     'main',
-    ['min-h-[calc(100vh_-_120px)]', 'flex', 'items-center', 'justify-around'],
+    ['h-full', 'items-center', 'justify-around'],
     'main',
   );
 
