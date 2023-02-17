@@ -1,7 +1,9 @@
+/* eslint-disable class-methods-use-this */
 import Model from '../Model/Model';
+import AuthenticateManager from '../shared/authenticate-manager';
+import LanguageManager from '../shared/language-manager';
+import ThemeManager from '../shared/theme-manager';
 import View from '../View/View';
-
-// need to get theme, lang from localStorage and ifLogin from sessionStorage (or from localStorage?)
 
 export default class Controller {
   view: View;
@@ -10,44 +12,26 @@ export default class Controller {
 
   container: HTMLElement;
 
-  isAuthenticated: boolean;
+  theme = ThemeManager.getInstance();
 
-  language: string;
+  lang = LanguageManager.getInstance();
 
-  theme: string;
+  tokenCheck = AuthenticateManager.getInstance();
 
   constructor(container: HTMLElement) {
     this.container = container;
-    this.isAuthenticated = false;
-    this.theme = 'corporate';
-    this.language = 'en';
     this.view = new View(this.container);
     this.model = new Model();
-    this.listenHashState();
   }
 
   render() {
-    this.isAuthenticated = this.model.checkAuthentication();
-
-    this.view.render(this.isAuthenticated);
+    this.view.render();
+    this.listenTokenChange();
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  listenHashState(): void {
-    window.onhashchange = () => {
-      switch (window.location.hash) {
-        case '#/login':
-          // this.model.loginPopup(this.isAuthenticated);
-          break;
-        case '#/signup':
-          console.log('signup');
-          break;
-        case '':
-          console.log('main');
-          break;
-        default:
-          console.log('error - 404');
-      }
-    };
+  listenTokenChange() {
+    window.addEventListener('tokenChange', () => {
+      this.view.renew();
+    });
   }
 }

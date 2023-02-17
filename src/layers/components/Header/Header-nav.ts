@@ -1,6 +1,7 @@
 import changeLang from '../../../utils/change-lang';
 import changeTheme from '../../../utils/change-theme';
 import createElement from '../../../utils/create-element';
+import AuthenticateManager from '../../shared/authenticate-manager';
 import LanguageManager from '../../shared/language-manager';
 import ThemeManager from '../../shared/theme-manager';
 import HeaderSVG from './Header-svg';
@@ -8,9 +9,9 @@ import HeaderSVG from './Header-svg';
 export default class HeaderNav {
   container: HTMLElement;
 
-  theme: ThemeManager;
+  theme = ThemeManager.getInstance();
 
-  lang: LanguageManager;
+  lang = LanguageManager.getInstance();
 
   navContainer: HTMLElement;
 
@@ -20,13 +21,13 @@ export default class HeaderNav {
 
   navCreate: HTMLDivElement;
 
+  isAuthenticated = AuthenticateManager.getInstance();
+
   constructor(
     container: HTMLElement,
     navContainer: HTMLElement,
   ) {
     this.container = container;
-    this.theme = ThemeManager.getInstance();
-    this.lang = LanguageManager.getInstance();
     this.navContainer = navContainer;
     this.navWorkspaces = createElement(
       'li',
@@ -217,8 +218,8 @@ export default class HeaderNav {
     changeLang(this.lang.getLanguage(), buttonRu, buttonEn, buttonUk);
   }
 
-  renew(isAuthenticated: boolean) {
-    if (isAuthenticated) {
+  renew() {
+    if (this.isAuthenticated.checkToken()) {
       this.navWorkspaces.style.display = '';
       this.navStarred.style.display = '';
       this.navCreate.style.display = '';

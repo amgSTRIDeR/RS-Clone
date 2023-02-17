@@ -23,3 +23,10 @@ button.button-add {
   width: 100%;
   order: 2;
 }
+
+#account-button {
+  background-image: url("../images/you-ve-got-to-be-kitten-me.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
