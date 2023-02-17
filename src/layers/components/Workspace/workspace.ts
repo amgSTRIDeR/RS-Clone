@@ -30,8 +30,6 @@ export default class Workspace {
 
     const workspaceAside = createElement('div', [
       'workspace__aside',
-      'flex',
-      'flex-wrap',
       'w-[30%]',
     ]);
 
@@ -42,11 +40,11 @@ export default class Workspace {
         'flex',
         'items-center',
         'w-full',
-        'h-auto',
+        'h-[70px]',
         'gap-2',
         'px-6',
         'py-2',
-        'hover:bg-gray-100',
+        'hover:bg-basic-3',
         'cursor-pointer',
       ],
       '',
@@ -60,11 +58,12 @@ export default class Workspace {
         'flex',
         'items-center',
         'w-full',
-        'h-auto',
+        'h-[70px]',
         'gap-2',
         'px-6',
         'py-2',
-        'hover:bg-gray-100',
+        'fill-secondary',
+        'hover:bg-basic-3',
         'cursor-pointer',
       ],
       '',
@@ -76,20 +75,69 @@ export default class Workspace {
     const workspaceMain = createElement('ul', [
       'workspace__main',
       'flex',
+      'flex-col',
+      'gap-8',
       'w-[60%]',
       'pl-[3vw]',
     ]);
 
-    const workspaceABoardsList = createElement('ul', [
+    const workspaceBoardsList = createElement('ul', [
       'workspace__boards-list',
       'flex',
       'flex-wrap',
       'gap-5',
     ]);
 
+    const workspaceBoardsTitle = createElement(
+      'h3',
+      ['w-full', 'uppercase', 'font-medium', 'contrast-title'],
+      '',
+      'Your boards',
+    );
+    workspaceBoardsList.append(workspaceBoardsTitle);
+
+    const workspaceStarredList = createElement('ul', [
+      'workspace__starred-list',
+      'flex',
+      'flex-wrap',
+      'gap-5',
+    ]);
+
+    const workspaceStarredTitle = createElement(
+      'h3',
+      ['w-full', 'uppercase', 'font-medium', 'contrast-title'],
+      '',
+      'Your starred boards',
+    );
+
+    workspaceStarredList.append(workspaceStarredTitle);
+
+    if (this.currentUser.starredTables) {
+      this.currentUser.starredTables.forEach((board) => {
+        const workspaceBoard = createElement(
+          'li',
+          [
+            'workspace__board',
+            'flex',
+            'justify-center',
+            'items-center',
+            'w-[200px]',
+            'h-[100px]',
+            'border',
+            'contrast-border',
+            'shadow-md',
+            'hover:bg-basic-3',
+            'cursor-pointer',
+          ],
+          '',
+          `<div>${board}</div>`,
+        );
+        workspaceBoardsList.append(workspaceBoard);
+      });
+    }
+
     this.currentUser.tables.forEach((board) => {
-      console.log(board);
-      const workspaceBoard = createElement(
+      const workspaceStarred = createElement(
         'li',
         [
           'workspace__board',
@@ -99,18 +147,18 @@ export default class Workspace {
           'w-[200px]',
           'h-[100px]',
           'border',
-          'border-indigo-200',
+          'contrast-border',
           'shadow-md',
-          'hover:bg-gray-100',
+          'hover:bg-basic-3',
           'cursor-pointer',
         ],
         '',
         `<div>${board}</div>`,
       );
-      workspaceABoardsList.append(workspaceBoard);
+      workspaceStarredList.append(workspaceStarred);
     });
 
-    workspaceMain.append(workspaceABoardsList);
+    workspaceMain.append(workspaceBoardsList, workspaceStarredList);
     workspaceWrapper.append(workspaceAside, workspaceMain);
 
     this.container.append(workspaceWrapper);

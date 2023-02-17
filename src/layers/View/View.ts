@@ -8,7 +8,7 @@ import LoadingModal from '../components/loading-modal/loading-modal';
 import createElement from '../../utils/create-element';
 import NotificationMessage from '../components/notification-message/notification-message';
 import UserPopup from '../components/UserPopup/UserPopup';
-import Workspace from '../components/Workspace/workspace';
+import Workspace from '../components/Workspace/Workspace';
 import { IUserPayload } from '../../api/interfaces';
 
 const currentUser: IUserPayload = {
@@ -16,6 +16,7 @@ const currentUser: IUserPayload = {
   password: '12345678',
   roles: ['admin'],
   tables: ['table1', 'table2'],
+  starredTables: ['starred table1', 'starred table2'],
   cards: [],
 };
 
@@ -64,7 +65,6 @@ export default class View {
     LoadingModal.render(this.container);
     NotificationMessage.render(this.container);
     this.container.appendChild(this.mainContainer);
-
     this.footer.render();
     this.header.render();
     this.listenModals();
