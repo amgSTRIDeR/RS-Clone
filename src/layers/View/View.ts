@@ -7,13 +7,16 @@ import AuthenticateManager from '../shared/authenticate-manager';
 import LoadingModal from '../components/loading-modal/loading-modal';
 import createElement from '../../utils/create-element';
 import NotificationMessage from '../components/notification-message/notification-message';
-import IUserProps from '../components/UserPopup/IUserProps';
 import UserPopup from '../components/UserPopup/UserPopup';
+import Workspace from '../components/Workspace/workspace';
+import { IUserPayload } from '../../api/interfaces';
 
-const currentUser: IUserProps = {
-  name: 'Name',
-  rights: 'Admin',
-  mail: 'Admin@mail.com',
+const currentUser: IUserPayload = {
+  username: 'CURRENTUSER',
+  password: '12345678',
+  roles: ['admin'],
+  tables: ['table1', 'table2'],
+  cards: [],
 };
 
 export default class View {
@@ -24,6 +27,8 @@ export default class View {
   private board: Board;
 
   private start: Start;
+
+  private workspace: Workspace;
 
   private userPopup: UserPopup;
 
@@ -41,6 +46,7 @@ export default class View {
     this.container = container;
     this.board = new Board(this.mainContainer);
     this.start = new Start(this.container, this.mainContainer);
+    this.workspace = new Workspace(this.container, currentUser);
     this.userPopup = new UserPopup(this.container, currentUser);
     this.header = new Header(this.container, this.userPopup);
     this.footer = new Footer(this.container);
@@ -48,7 +54,7 @@ export default class View {
 
   render(): void {
     if (this.isAuthenticated.checkToken()) {
-      this.board.render();
+      this.workspace.render();
       this.userPopup.render();
     } else {
       this.start.render();
@@ -68,7 +74,7 @@ export default class View {
     this.mainContainer.innerHTML = '';
     this.header.renew();
     if (this.isAuthenticated.checkToken()) {
-      this.board.render();
+      this.workspace.render();
       this.userPopup.render();
     } else {
       this.start.render();
