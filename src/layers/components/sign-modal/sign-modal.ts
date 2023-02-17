@@ -197,7 +197,7 @@ export default class SignModal {
           if (key === 'token') {
             this.hide();
             this.authenticateManager.setToken(value);
-            NotificationMessage.showNotification(`User ${usernameInput.value} logged in`);
+            NotificationMessage.showNotification(`${usernameInput.value} logged in`);
           } else {
             NotificationMessage.showNotification(value);
           }

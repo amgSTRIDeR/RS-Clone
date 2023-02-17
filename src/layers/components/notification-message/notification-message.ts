@@ -11,13 +11,12 @@ export default class NotificationMessage {
     'text-primary-focus',
     'px-[100px]',
     'py-[50px]',
-    'absolute',
-    'z-100',
-    'opacity-0',
+    'fixed',
     'ease-in-out',
     'duration-1000',
-    'z-20',
+    'z-100',
     'pointer-events-none',
+    'hidden',
   ]);
 
   static render(container: HTMLElement) {
@@ -27,9 +26,9 @@ export default class NotificationMessage {
 
   static showNotification(message: string) {
     NotificationMessage.message.textContent = message;
-    NotificationMessage.messageWrapper.classList.remove('opacity-0');
+    NotificationMessage.messageWrapper.classList.remove('hidden');
     setTimeout(() => {
-      NotificationMessage.messageWrapper.classList.add('opacity-0');
+      NotificationMessage.messageWrapper.classList.add('hidden');
     }, 5000);
   }
 }
