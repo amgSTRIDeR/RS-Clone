@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable class-methods-use-this */
 import { userHttp } from '../../../api/user';
 import createElement from '../../../utils/create-element';
@@ -189,29 +190,25 @@ export default class SignModal {
 
       if (usernameRegex.test(usernameInput.value) && passwordRegex.test(passwordInput.value)) {
         LoadingModal.show();
-        if (this.type === 'up') {
-          // TODO Как отклонить и выдать сообщение что пользователь с таким именем существует?
-          userHttp.createUser(usernameInput.value, passwordInput.value).then(async () => {
-            const userToken = await userHttp.getUserToken(usernameInput.value, passwordInput.value);
-            const key = Object.keys(userToken)[0];
-            const message = Object.values(userToken)[0];
-            if (key === 'token') {
-              this.hide();
-              this.authenticateManager.setToken(message);
-              NotificationMessage.showNotification(`User ${usernameInput.value} created`);
-            } else {
-              NotificationMessage.showNotification(`User ${usernameInput.value} not created`);
-            }
-          });
-        } else {
-          const userToken = await userHttp.getUserToken(usernameInput.value, passwordInput.value);
-          const key = Object.keys(userToken)[0];
-          const message = Object.values(userToken)[0];
+        if (this.type === 'in') {
+          const answer = await userHttp.getUserToken(usernameInput.value, passwordInput.value);
+          const [key] = Object.keys(answer);
+          const [value] = Object.values(answer);
           if (key === 'token') {
             this.hide();
-            this.authenticateManager.setToken(message);
+            this.authenticateManager.setToken(value);
+            NotificationMessage.showNotification(`User ${usernameInput.value} logged in`);
           } else {
-            NotificationMessage.showNotification(message);
+            NotificationMessage.showNotification(value);
+          }
+        } else {
+          const result = await userHttp.createUser(usernameInput.value, passwordInput.value);
+          NotificationMessage.showNotification(result.data.message);
+          if (result.status === 201) {
+            const answer = await userHttp.getUserToken(usernameInput.value, passwordInput.value);
+            const [value] = Object.values(answer);
+            this.authenticateManager.setToken(value);
+            this.hide();
           }
         }
         LoadingModal.hide();

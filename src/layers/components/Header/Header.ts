@@ -1,5 +1,6 @@
 import createElement from '../../../utils/create-element';
 import AuthenticateManager from '../../shared/authenticate-manager';
+import NotificationMessage from '../notification-message/notification-message';
 import SignModal from '../sign-modal/sign-modal';
 import HeaderNav from './Header-nav';
 import HeaderSVG from './Header-svg';
@@ -122,6 +123,7 @@ export default class Header {
 
     this.accountButton.addEventListener('click', () => {
       this.authenticateManager.deleteToken();
+      NotificationMessage.showNotification('Logged out');
     });
   }
 
