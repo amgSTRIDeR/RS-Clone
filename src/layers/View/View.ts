@@ -8,14 +8,15 @@ import LoadingModal from '../components/loading-modal/loading-modal';
 import createElement from '../../utils/create-element';
 import NotificationMessage from '../components/notification-message/notification-message';
 import UserPopup from '../components/UserPopup/UserPopup';
-import Workspace from '../components/Workspace/workspace';
+import Workspace from '../components/Workspace/Workspace';
 import { IUserPayload } from '../../api/interfaces';
 
 const currentUser: IUserPayload = {
   username: 'CURRENTUSER',
   password: '12345678',
   roles: ['admin'],
-  tables: ['table1', 'table2'],
+  tables: ['table1', 'table2', 'table1', 'table2', 'table1', 'table2', 'table1', 'table2'],
+  starredTables: ['starred table1', 'starred table2'],
   cards: [],
 };
 
@@ -38,7 +39,7 @@ export default class View {
 
   mainContainer = createElement(
     'main',
-    ['h-full', 'items-center', 'justify-around'],
+    ['flex', 'h-full', 'flex-grow'],
     'main',
   );
 
@@ -54,7 +55,7 @@ export default class View {
 
   render(): void {
     if (this.isAuthenticated.checkToken()) {
-      this.workspace.render();
+      this.board.render();
       this.userPopup.render();
     } else {
       this.start.render();
@@ -64,7 +65,6 @@ export default class View {
     LoadingModal.render(this.container);
     NotificationMessage.render(this.container);
     this.container.appendChild(this.mainContainer);
-
     this.footer.render();
     this.header.render();
     this.listenModals();
@@ -74,7 +74,7 @@ export default class View {
     this.mainContainer.innerHTML = '';
     this.header.renew();
     if (this.isAuthenticated.checkToken()) {
-      this.workspace.render();
+      this.board.render();
       this.userPopup.render();
     } else {
       this.start.render();

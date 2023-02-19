@@ -962,15 +962,20 @@ module.exports = {
       {
         corporate: {
           ...require('daisyui/src/colors/themes')['[data-theme=corporate]'],
-          '.primary': '#004ea0',
-          '.bg-basic': {
+          '.basic': {
             'background-color': '#b5d3ff6b',
           },
           '.bg-basic-2': {
             'background-color': '#fff',
           },
+          '.contrast-title': {
+            'color': '#2e51f6',
+          },
+          '.contrast-border': {
+            'border-color': '#cdcef4',
+          },
           '.bg-basic-3': {
-            'background-color': '#dde7f5ab',
+            'background-color': '#f3f3f3ba',
           },
           '.bg-semiblack': {
             'background-color': '#000000db',
@@ -978,14 +983,20 @@ module.exports = {
         },
         autumn: {
           ...require('daisyui/src/colors/themes')['[data-theme=autumn]'],
-          '.bg-basic': {
+          '.basic': {
             'background-color': '#ffe1e1ab',
           },
           '.bg-basic-2': {
             'background-color': '#ffffffab',
           },
+          '.contrast-title': {
+            'color': '#d85251',
+          },
+          '.contrast-border': {
+            'border-color': '#d8525187',
+          },
           '.bg-basic-3': {
-            'background-color': '#dde7f5ab',
+            'background-color': '#f3f3f3ba',
           },
           '.bg-semiblack': {
             'background-color': '#000000db',
@@ -993,14 +1004,20 @@ module.exports = {
         },
         night: {
           ...require('daisyui/src/colors/themes')['[data-theme=night]'],
-          '.bg-basic': {
+          '.basic': {
             'background-color': '#93c5ff29',
           },
           '.bg-basic-2': {
             'background-color': '#93c5ff30',
           },
+          '.contrast-title': {
+            'color': '#2e51f6',
+          },
+          '.contrast-border': {
+            'border-color': '#004ea0',
+          },
           '.bg-basic-3': {
-            'background-color': '#dde7f5ab',
+            'background-color': '#dde7f533',
           },
           '.bg-semiblack': {
             'background-color': '#000000db',
