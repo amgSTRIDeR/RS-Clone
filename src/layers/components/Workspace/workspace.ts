@@ -2,6 +2,7 @@ import { IUserPayload } from '../../../api/interfaces';
 import createElement from '../../../utils/create-element';
 import BoardSVG from '../Board/Board-svg';
 import SignModal from '../sign-modal/sign-modal';
+import { boardHttp } from '../../../api/board';
 
 export default class Workspace {
   container: HTMLElement;
@@ -87,8 +88,8 @@ export default class Workspace {
       'gap-5',
     ]);
 
-    this.currentUser.tables.forEach((board) => {
-      console.log(board);
+    this.currentUser.tables.forEach(async (boardId) => {
+      const board = await boardHttp.getBoard(boardId);
       const workspaceBoard = createElement(
         'li',
         [
@@ -105,7 +106,7 @@ export default class Workspace {
           'cursor-pointer',
         ],
         '',
-        `<div>${board}</div>`,
+        `<div>${board.name}</div>`,
       );
       workspaceABoardsList.append(workspaceBoard);
     });

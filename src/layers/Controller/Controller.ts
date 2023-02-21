@@ -1,4 +1,4 @@
-/* eslint-disable class-methods-use-this */
+import getUserInfo from '../../utils/get-user-info';
 import Model from '../Model/Model';
 import AuthenticateManager from '../shared/authenticate-manager';
 import LanguageManager from '../shared/language-manager';
@@ -6,7 +6,7 @@ import ThemeManager from '../shared/theme-manager';
 import View from '../View/View';
 
 export default class Controller {
-  view: View;
+  view: View | undefined;
 
   model: Model;
 
@@ -20,18 +20,29 @@ export default class Controller {
 
   constructor(container: HTMLElement) {
     this.container = container;
-    this.view = new View(this.container);
     this.model = new Model();
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+    this.view;
   }
 
-  render() {
-    this.view.render();
+  async getViewParams() {
+    const currentUser = await getUserInfo();
+    this.view = new View(this.container, currentUser);
+  }
+
+  async render() {
+    await this.getViewParams();
+    if (this.view) {
+      this.view.render();
+    }
     this.listenTokenChange();
   }
 
   listenTokenChange() {
     window.addEventListener('tokenChange', () => {
-      this.view.renew();
+      if (this.view) {
+        this.view.renew();
+      }
     });
   }
 }
