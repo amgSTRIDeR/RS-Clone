@@ -219,7 +219,7 @@ export default class HeaderNav {
   }
 
   renew() {
-    if (this.isAuthenticated.checkToken()) {
+    if (this.isAuthenticated.checkId()) {
       this.navWorkspaces.style.display = '';
       this.navStarred.style.display = '';
       this.navCreate.style.display = '';

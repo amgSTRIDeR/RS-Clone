@@ -130,7 +130,7 @@ export default class Header {
   renew() {
     this.headerNav.renew();
 
-    if (this.authenticateManager.checkToken()) {
+    if (this.authenticateManager.checkId()) {
       this.searchWrapper.style.display = '';
       this.accountButton.style.display = '';
       this.loginButton.style.display = 'none';
