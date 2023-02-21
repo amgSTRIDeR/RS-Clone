@@ -5,6 +5,7 @@ export interface IUserPayload {
   tables: string[];
   cards: string[];
   description?: string | null;
+  starredTables?: string[];
   name?: string;
 }
 
