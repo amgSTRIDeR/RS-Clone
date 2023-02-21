@@ -2,6 +2,7 @@ import { IUserPayload } from '../../../api/interfaces';
 import createElement from '../../../utils/create-element';
 import BoardSVG from '../Board/Board-svg';
 import SignModal from '../sign-modal/sign-modal';
+import { boardHttp } from '../../../api/board';
 
 export default class Workspace {
   container: HTMLElement;
@@ -113,7 +114,8 @@ export default class Workspace {
     workspaceStarredList.append(workspaceStarredTitle);
 
     if (this.currentUser.starredTables) {
-      this.currentUser.starredTables.forEach((board) => {
+      this.currentUser.starredTables.forEach((boardId) => {
+        const board = await boardHttp.getBoard(boardId);
         const workspaceBoard = createElement(
           'li',
           [
@@ -130,13 +132,14 @@ export default class Workspace {
             'cursor-pointer',
           ],
           '',
-          `<div>${board}</div>`,
+          `<div>${board.name}</div>`,
         );
         workspaceBoardsList.append(workspaceBoard);
       });
     }
 
-    this.currentUser.tables.forEach((board) => {
+     this.currentUser.tables.forEach(async (boardId) => {
+      const board = await boardHttp.getBoard(boardId);
       const workspaceStarred = createElement(
         'li',
         [
@@ -153,7 +156,7 @@ export default class Workspace {
           'cursor-pointer',
         ],
         '',
-        `<div>${board}</div>`,
+        `<div>${board.name}</div>`,
       );
       workspaceStarredList.append(workspaceStarred);
     });

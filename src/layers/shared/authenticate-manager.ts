@@ -1,4 +1,3 @@
-/* eslint-disable class-methods-use-this */
 export default class AuthenticateManager {
   private static instance: AuthenticateManager;
 
@@ -9,17 +8,17 @@ export default class AuthenticateManager {
     return AuthenticateManager.instance;
   }
 
-  public setToken(token: string): void {
-    localStorage.setItem('token', token);
-    window.dispatchEvent(new Event('tokenChange'));
+  public setId(id: string): void {
+    localStorage.setItem('id', id);
+    window.dispatchEvent(new Event('idChange'));
   }
 
-  public deleteToken() {
-    localStorage.removeItem('token');
-    window.dispatchEvent(new Event('tokenChange'));
+  public deleteId() {
+    localStorage.removeItem('id');
+    window.dispatchEvent(new Event('idChange'));
   }
 
-  public checkToken() {
-    return !!localStorage.getItem('token');
+  public checkId() {
+    return !!localStorage.getItem('id');
   }
 }

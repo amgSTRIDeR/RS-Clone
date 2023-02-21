@@ -1,5 +1,3 @@
-/* eslint-disable max-len */
-/* eslint-disable class-methods-use-this */
 import { userHttp } from '../../../api/user';
 import createElement from '../../../utils/create-element';
 import AuthenticateManager from '../../shared/authenticate-manager';
@@ -191,12 +189,12 @@ export default class SignModal {
       if (usernameRegex.test(usernameInput.value) && passwordRegex.test(passwordInput.value)) {
         LoadingModal.show();
         if (this.type === 'in') {
-          const answer = await userHttp.getUserToken(usernameInput.value, passwordInput.value);
+          const answer = await userHttp.getUserId(usernameInput.value, passwordInput.value);
           const [key] = Object.keys(answer);
           const [value] = Object.values(answer);
-          if (key === 'token') {
+          if (key === 'id') {
             this.hide();
-            this.authenticateManager.setToken(value);
+            this.authenticateManager.setId(value);
             NotificationMessage.showNotification(`${usernameInput.value} logged in`);
           } else {
             NotificationMessage.showNotification(value);
@@ -205,9 +203,9 @@ export default class SignModal {
           const result = await userHttp.createUser(usernameInput.value, passwordInput.value);
           NotificationMessage.showNotification(result.data.message);
           if (result.status === 201) {
-            const answer = await userHttp.getUserToken(usernameInput.value, passwordInput.value);
+            const answer = await userHttp.getUserId(usernameInput.value, passwordInput.value);
             const [value] = Object.values(answer);
-            this.authenticateManager.setToken(value);
+            this.authenticateManager.setId(value);
             this.hide();
           }
         }

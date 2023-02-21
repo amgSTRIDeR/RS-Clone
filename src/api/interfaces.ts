@@ -15,7 +15,8 @@ export interface IUser extends IUserPayload {
 }
 
 export interface IUserLogin {
-  token: string;
+  // token: string;
+  id: string;
 }
 
 export interface IBoardPayload {

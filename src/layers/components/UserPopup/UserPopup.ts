@@ -47,7 +47,7 @@ export default class UserPopup {
     this.container.append(this.userPopup);
 
     UserPopupLogoutLink.addEventListener('click', () => {
-      this.authenticateManager.deleteToken();
+      this.authenticateManager.deleteId();
       NotificationMessage.showNotification('Logged out');
       this.hide();
     });

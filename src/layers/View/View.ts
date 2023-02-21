@@ -11,14 +11,6 @@ import UserPopup from '../components/UserPopup/UserPopup';
 import Workspace from '../components/Workspace/Workspace';
 import { IUserPayload } from '../../api/interfaces';
 
-const currentUser: IUserPayload = {
-  username: 'CURRENTUSER',
-  password: '12345678',
-  roles: ['admin'],
-  tables: ['table1', 'table2', 'table1', 'table2', 'table1', 'table2', 'table1', 'table2'],
-  starredTables: ['starred table1', 'starred table2'],
-  cards: [],
-};
 
 export default class View {
   private container: HTMLElement;
@@ -43,7 +35,7 @@ export default class View {
     'main',
   );
 
-  constructor(container: HTMLElement) {
+  constructor(container: HTMLElement, currentUser: IUserPayload) {
     this.container = container;
     this.board = new Board(this.mainContainer);
     this.start = new Start(this.container, this.mainContainer);
@@ -53,9 +45,11 @@ export default class View {
     this.footer = new Footer(this.container);
   }
 
-  render(): void {
-    if (this.isAuthenticated.checkToken()) {
-      this.board.render();
+
+  async render() {
+    if (this.isAuthenticated.checkId()) {
+      this.workspace.render();
+
       this.userPopup.render();
     } else {
       this.start.render();
@@ -73,8 +67,10 @@ export default class View {
   renew() {
     this.mainContainer.innerHTML = '';
     this.header.renew();
-    if (this.isAuthenticated.checkToken()) {
-      this.board.render();
+
+    if (this.isAuthenticated.checkId()) {
+      this.workspace.render();
+
       this.userPopup.render();
     } else {
       this.start.render();

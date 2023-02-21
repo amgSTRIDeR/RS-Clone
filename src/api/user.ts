@@ -2,7 +2,7 @@ import { baseURL, Path } from './variables';
 import { IUser, IUserLogin, IUserPayload } from './interfaces';
 
 export class HttpUser {
-  async getUser(id: string) {
+  async getUser(id: string | null) {
     const response = await fetch(`${baseURL}${Path.users}${id}`, {
       headers: {
       },
@@ -31,7 +31,7 @@ export class HttpUser {
     };
   }
 
-  async getUserToken(username: string, password: string) {
+  async getUserId(username: string, password: string) {
     const response = await fetch(`${baseURL}${Path.userLogin}`, {
       method: 'POST',
       headers: {
