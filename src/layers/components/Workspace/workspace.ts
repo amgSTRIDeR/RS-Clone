@@ -1,8 +1,9 @@
-import { IUserPayload } from '../../../api/interfaces';
+import { IBoard, IUserPayload } from '../../../api/interfaces';
 import createElement from '../../../utils/create-element';
 import BoardSVG from '../Board/Board-svg';
 import SignModal from '../sign-modal/sign-modal';
 import { boardHttp } from '../../../api/board';
+import Board from '../Board/Board';
 
 export default class Workspace {
   container: HTMLElement;
@@ -114,7 +115,7 @@ export default class Workspace {
     workspaceStarredList.append(workspaceStarredTitle);
 
     this.currentUser.tables.forEach(async (boardId) => {
-      const board = await boardHttp.getBoard(boardId);
+      const board: IBoard = await boardHttp.getBoard(boardId);
       const workspaceBoard = createElement(
         'li',
         [
@@ -133,6 +134,11 @@ export default class Workspace {
         '',
         `<div>${board.name}</div>`,
       );
+      workspaceBoard.addEventListener('click', () => {
+        const newBoard: Board = new Board(this.container, board);
+        this.container.innerHTML = '';
+        newBoard.render();
+      });
       workspaceBoardsList.append(workspaceBoard);
     });
 
@@ -158,7 +164,9 @@ export default class Workspace {
           `<div>${board.name}</div>`,
         );
         workspaceStarred.addEventListener('click', () => {
-          console.log(board);
+          const newBoard: Board = new Board(this.container, board);
+          this.container.innerHTML = '';
+          newBoard.render();
         });
         workspaceStarredList.append(workspaceStarred);
       }
