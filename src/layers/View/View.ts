@@ -1,5 +1,5 @@
 import initI18next from '../../utils/init-i18next';
-import Board from '../components/Board/Board';
+// import Board from '../components/Board/Board';
 import Footer from '../components/Footer/Footer';
 import Header from '../components/Header/Header';
 import Start from '../components/Start/Start';
@@ -16,7 +16,7 @@ export default class View {
 
   private header: Header;
 
-  private board: Board;
+  // private board: Board;
 
   private start: Start;
 
@@ -36,7 +36,7 @@ export default class View {
 
   constructor(container: HTMLElement, currentUser: IUserPayload) {
     this.container = container;
-    this.board = new Board(this.mainContainer);
+    // this.board = new Board(this.mainContainer);
     this.start = new Start(this.container, this.mainContainer);
     this.workspace = new Workspace(this.container, currentUser);
     this.userPopup = new UserPopup(this.container, currentUser);

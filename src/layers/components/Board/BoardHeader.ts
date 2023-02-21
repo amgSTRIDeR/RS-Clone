@@ -7,8 +7,11 @@ import BoardSVG from './Board-svg';
 export default class BoardHeader {
   container: HTMLElement;
 
-  constructor(container: HTMLElement) {
+  boardName: string;
+
+  constructor(container: HTMLElement, boardName: string) {
     this.container = container;
+    this.boardName = boardName;
   }
 
   render() {
@@ -21,7 +24,7 @@ export default class BoardHeader {
       'pt-3',
       'pb-5',
     ]);
-    const boardName = createElement('h1', ['board__heading'], '', 'Board name');
+    const boardName = createElement('h1', ['board__heading'], '', this.boardName);
     const boardHeaderCol = createElement('div', [
       'board__header-col',
       'flex',
