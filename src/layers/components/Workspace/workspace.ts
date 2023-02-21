@@ -17,7 +17,7 @@ export default class Workspace {
     this.signupModal = new SignModal(this.container, 'up');
   }
 
-  public render(): void {
+  public async render() {
     const workspaceWrapper = createElement('div', [
       'workspace',
       'flex',
@@ -113,34 +113,9 @@ export default class Workspace {
 
     workspaceStarredList.append(workspaceStarredTitle);
 
-    if (this.currentUser.starredTables) {
-      this.currentUser.starredTables.forEach((boardId) => {
-        const board = await boardHttp.getBoard(boardId);
-        const workspaceBoard = createElement(
-          'li',
-          [
-            'workspace__board',
-            'flex',
-            'justify-center',
-            'items-center',
-            'w-[200px]',
-            'h-[100px]',
-            'border',
-            'contrast-border',
-            'shadow-md',
-            'hover:bg-basic-3',
-            'cursor-pointer',
-          ],
-          '',
-          `<div>${board.name}</div>`,
-        );
-        workspaceBoardsList.append(workspaceBoard);
-      });
-    }
-
-     this.currentUser.tables.forEach(async (boardId) => {
+    this.currentUser.tables.forEach(async (boardId) => {
       const board = await boardHttp.getBoard(boardId);
-      const workspaceStarred = createElement(
+      const workspaceBoard = createElement(
         'li',
         [
           'workspace__board',
@@ -158,7 +133,35 @@ export default class Workspace {
         '',
         `<div>${board.name}</div>`,
       );
-      workspaceStarredList.append(workspaceStarred);
+      workspaceBoardsList.append(workspaceBoard);
+    });
+
+    this.currentUser.tables.forEach(async (boardId) => {
+      const board = await boardHttp.getBoard(boardId);
+      if (board.starred) {
+        const workspaceStarred = createElement(
+          'li',
+          [
+            'workspace__board',
+            'flex',
+            'justify-center',
+            'items-center',
+            'w-[200px]',
+            'h-[100px]',
+            'border',
+            'contrast-border',
+            'shadow-md',
+            'hover:bg-basic-3',
+            'cursor-pointer',
+          ],
+          '',
+          `<div>${board.name}</div>`,
+        );
+        workspaceStarred.addEventListener('click', () => {
+          console.log(board);
+        });
+        workspaceStarredList.append(workspaceStarred);
+      }
     });
 
     workspaceMain.append(workspaceBoardsList, workspaceStarredList);

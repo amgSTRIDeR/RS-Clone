@@ -8,9 +8,8 @@ import LoadingModal from '../components/loading-modal/loading-modal';
 import createElement from '../../utils/create-element';
 import NotificationMessage from '../components/notification-message/notification-message';
 import UserPopup from '../components/UserPopup/UserPopup';
-import Workspace from '../components/Workspace/Workspace';
+import Workspace from '../components/Workspace/workspace';
 import { IUserPayload } from '../../api/interfaces';
-
 
 export default class View {
   private container: HTMLElement;
@@ -45,11 +44,9 @@ export default class View {
     this.footer = new Footer(this.container);
   }
 
-
   async render() {
     if (this.isAuthenticated.checkId()) {
       this.workspace.render();
-
       this.userPopup.render();
     } else {
       this.start.render();
