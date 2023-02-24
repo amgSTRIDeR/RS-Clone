@@ -220,6 +220,8 @@ export default class CardModal extends Card {
     overlay.append(cardModal);
 
     this.container.append(overlay);
+    // return cardModal;
+    return overlay;
   }
 
   // update() {}

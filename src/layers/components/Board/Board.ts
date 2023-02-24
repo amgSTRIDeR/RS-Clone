@@ -3,9 +3,7 @@ import Card from '../Card/Card';
 import CardModal from '../CardModal/CardModal';
 import Column from '../Column/Column';
 import BoardHeader from './BoardHeader';
-import {
-  IBoard, IUser, ICard, // IUserPayload,
-} from '../../../api/interfaces';
+import { IBoard, IUser, ICard } from '../../../api/interfaces';
 import { cardHttp } from '../../../api/card';
 import { userHttp } from '../../../api/user';
 
@@ -58,7 +56,7 @@ export default class Board {
               cardUserList.push(user.username);
             }
           });
-          new Card({
+          const newCard = new Card({
             container: column,
             name: card.name,
             description: card.description,
@@ -69,7 +67,7 @@ export default class Board {
             creator: creatorUser,
           }).render();
 
-          new CardModal({
+          const modal = new CardModal({
             container: column,
             name: card.name,
             description: card.description,
@@ -79,6 +77,19 @@ export default class Board {
             users: cardUserList,
             creator: creatorUser,
           }).render();
+
+          newCard.addEventListener('click', () => {
+            modal.classList.remove('hidden');
+          });
+
+          modal.addEventListener('click', (event) => {
+            const elements: NodeListOf<Element> | null = document.querySelectorAll('.overlay.absolute.top-0');
+            elements.forEach((element) => {
+              if (element === event.target) {
+                modal.classList.add('hidden');
+              }
+            });
+          });
         }
       });
       board.append(column);

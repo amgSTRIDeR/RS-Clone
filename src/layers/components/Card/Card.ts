@@ -87,6 +87,7 @@ export default class Card {
     );
     card.append(cardHeader, cardBody, cardMember);
     this.container.append(card);
+    return card;
   }
 
   // update() {}
