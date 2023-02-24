@@ -3,7 +3,9 @@ import Card from '../Card/Card';
 import CardModal from '../CardModal/CardModal';
 import Column from '../Column/Column';
 import BoardHeader from './BoardHeader';
-import { IBoard, ICardPayload, IUserPayload } from '../../../api/interfaces';
+import {
+  IBoard, IUser, ICard, // IUserPayload,
+} from '../../../api/interfaces';
 import { cardHttp } from '../../../api/card';
 import { userHttp } from '../../../api/user';
 
@@ -13,13 +15,11 @@ export default class Board {
   container: HTMLElement;
 
   constructor(container: HTMLElement, boardContent: IBoard) {
-    console.log(boardContent);
-    // console.log(boardContent.columns);
     this.board = boardContent;
     this.container = container;
   }
 
-  render() {
+  async render() {
     const board = createElement('section', [
       'board',
       'flex-wrap',
@@ -33,6 +33,9 @@ export default class Board {
 
     new BoardHeader(board, this.board.name).render();
 
+    const cardList: ICard[] = await cardHttp.getCards();
+    const userList: IUser[] = await userHttp.getUsers();
+
     this.board.columns.forEach((columnName: string, index: number) => {
       const column = new Column({
         container: board,
@@ -42,34 +45,43 @@ export default class Board {
         cards: [...this.board.cards],
       }).render();
 
-      // const cardList: ICardPayload[] = await cardHttp.getCards();
-      this.board.cards.forEach(async (cardId) => {
-        const cardInfo: ICardPayload = await cardHttp.getCard(cardId);
-        if (cardInfo.column === columnName) {
-          const creatorUser: IUserPayload = await userHttp.getUser(cardInfo.creator);
+      cardList.forEach(async (card) => {
+        let creatorUser: string = '';
+        const cardUserList: string[] = [];
+        if (card.column === columnName) {
+          userList.forEach((user) => {
+            if (Object.values(user).includes(card.creator)) {
+              creatorUser = user.username;
+            }
+            const userId: string = Object.values(user)[0];
+            if (card.users.includes(userId)) {
+              cardUserList.push(user.username);
+            }
+          });
           new Card({
             container: column,
-            name: cardInfo.name,
-            description: cardInfo.description,
+            name: card.name,
+            description: card.description,
             table: this.board.name,
             column: columnName,
-            comments: [...cardInfo.comments],
-            users: ['users'],
-            creator: creatorUser.username,
+            comments: [...card.comments],
+            users: cardUserList,
+            creator: creatorUser,
           }).render();
 
           new CardModal({
             container: column,
-            name: cardInfo.name,
-            description: cardInfo.description,
+            name: card.name,
+            description: card.description,
             table: this.board.name,
             column: columnName,
-            comments: [...cardInfo.comments],
-            users: ['users'],
-            creator: creatorUser.username,
+            comments: [...card.comments],
+            users: cardUserList,
+            creator: creatorUser,
           }).render();
         }
       });
+      board.append(column);
       this.container.append(board);
     });
   }
