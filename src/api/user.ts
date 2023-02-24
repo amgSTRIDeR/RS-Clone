@@ -13,6 +13,17 @@ export class HttpUser {
     return data;
   }
 
+  async getUsers() {
+    const response = await fetch(`${baseURL}${Path.users}`, {
+      headers: {
+      },
+    });
+    const data = await response.json().catch((err: Error) => {
+      throw err;
+    }) as IUser[];
+    return data;
+  }
+
   async createUser(username: string, password: string) {
     const response = await fetch(`${baseURL}${Path.userRegistratin}`, {
       method: 'POST',
