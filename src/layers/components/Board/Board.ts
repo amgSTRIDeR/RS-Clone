@@ -40,7 +40,7 @@ export default class Board {
         container: board,
         id: `${index + 1}`,
         name: columnName,
-        table: Object.values(this.board)[0],
+        board: Object.values(this.board)[0],
         cards: [...this.board.cards],
       }).render();
 
