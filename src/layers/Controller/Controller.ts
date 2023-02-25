@@ -35,11 +35,11 @@ export default class Controller {
     if (this.view) {
       this.view.render();
     }
-    this.listenTokenChange();
+    this.listenIdChange();
   }
 
-  listenTokenChange() {
-    window.addEventListener('tokenChange', () => {
+  listenIdChange() {
+    window.addEventListener('idChange', () => {
       if (this.view) {
         this.view.renew();
       }
