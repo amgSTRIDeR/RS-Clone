@@ -35,7 +35,6 @@ export default class Board {
     const userList: IUser[] = await userHttp.getUsers();
 
     this.board.columns.forEach((columnName: string, index: number) => {
-      // console.log('***', Object.values(this.board)[0]);
       const column = new Column({
         container: board,
         id: `${index + 1}`,
@@ -86,6 +85,11 @@ export default class Board {
           modal.addEventListener('click', (event) => {
             const elements: NodeListOf<Element> | null = document.querySelectorAll('.overlay.absolute.top-0');
             elements.forEach((element) => {
+              if (event.target instanceof HTMLButtonElement) {
+                if (event.target.innerText === 'Discard') {
+                  modal.classList.add('hidden');
+                }
+              }
               if (element === event.target) {
                 modal.classList.add('hidden');
               }

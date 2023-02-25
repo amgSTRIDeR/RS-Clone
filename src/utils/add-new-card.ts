@@ -19,6 +19,7 @@ export default function openNewCard(column: HTMLElement, cardData: INewCard) {
   const modalElement: HTMLElement = modalObject.render();
 
   modalElement.classList.remove('hidden');
+  // const deleteCardButton: HTMLButtonElement = modalElement.querySelector('');
 
   modalElement.addEventListener('click', (event) => {
     const elements: NodeListOf<Element> | null = document.querySelectorAll('.overlay.absolute.top-0');
@@ -34,7 +35,6 @@ export default function openNewCard(column: HTMLElement, cardData: INewCard) {
         if (values && userId) {
           modalObject.name = values[0];
           modalObject.description = values[1];
-          console.log();
           new Card({
             container: column,
             name: values[0],
@@ -46,7 +46,6 @@ export default function openNewCard(column: HTMLElement, cardData: INewCard) {
             creator: userId,
           }).render();
 
-          console.log(cardData.board);
           cardHttp.createCard({
             name: values[0],
             description: values[1],
@@ -57,6 +56,9 @@ export default function openNewCard(column: HTMLElement, cardData: INewCard) {
             creator: userId,
           });
         }
+      }
+      if (event.target.innerText === 'Discard') {
+        modalElement.classList.add('hidden');
       }
     }
   });
