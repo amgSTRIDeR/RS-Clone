@@ -1,14 +1,17 @@
-// import Card from '../Card/Card';
+/* eslint-disable prefer-destructuring */
+import Card from '../layers/components/Card/Card';
 import CardModal from '../layers/components/CardModal/CardModal';
 import getFromModal from './get-info-from-card';
+import { cardHttp } from '../api/card';
+import INewCard from './interfaces';
 
-export default function openNewCard(column: HTMLElement, columnName: string) {
+export default function openNewCard(column: HTMLElement, cardData: INewCard) {
   const modalObject: CardModal = new CardModal({
     container: column,
     name: '',
     description: '',
-    table: '',
-    column: columnName,
+    table: cardData.board,
+    column: cardData.columnName,
     comments: [],
     users: [],
     creator: '',
@@ -26,21 +29,34 @@ export default function openNewCard(column: HTMLElement, columnName: string) {
     });
     if (event.target instanceof HTMLElement) {
       if (event.target.innerText === 'Save') {
-        // взять всю информацию
-        // добавить ее в объект окна
-        // добавить ее в объект карточки
-        getFromModal(modalElement);
+        const values: string[] | null = getFromModal(modalElement);
+        const userId: string | null = localStorage.getItem('id');
+        if (values && userId) {
+          modalObject.name = values[0];
+          modalObject.description = values[1];
+          console.log();
+          new Card({
+            container: column,
+            name: values[0],
+            description: values[1],
+            table: cardData.board,
+            column: cardData.columnName,
+            comments: [],
+            users: [],
+            creator: userId,
+          }).render();
 
-        // const newCard: HTMLElement = new Card({
-        //     container: column,
-        //     name: '',
-        //     description: card.description,
-        //     table: this.board.name,
-        //     column: columnName,
-        //     comments: [...card.comments],
-        //     users: cardUserList,
-        //     creator: creatorUser,
-        //   }).render();
+          console.log(cardData.board);
+          cardHttp.createCard({
+            name: values[0],
+            description: values[1],
+            table: cardData.board,
+            column: cardData.columnName,
+            comments: [],
+            users: [],
+            creator: userId,
+          });
+        }
       }
     }
   });

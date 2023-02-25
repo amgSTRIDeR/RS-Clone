@@ -35,11 +35,12 @@ export default class Board {
     const userList: IUser[] = await userHttp.getUsers();
 
     this.board.columns.forEach((columnName: string, index: number) => {
+      // console.log('***', Object.values(this.board)[0]);
       const column = new Column({
         container: board,
         id: `${index + 1}`,
         name: columnName,
-        table: this.board.name,
+        table: Object.values(this.board)[0],
         cards: [...this.board.cards],
       }).render();
 

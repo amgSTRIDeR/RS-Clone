@@ -12,7 +12,7 @@ export default class Column {
 
   name: string;
 
-  table: string;
+  board: string;
 
   cards: string[];
 
@@ -20,13 +20,13 @@ export default class Column {
     container,
     id,
     name,
-    table,
+    board,
     cards,
   }: IColumnProps) {
     this.container = container;
     this.id = id;
     this.name = name;
-    this.table = table;
+    this.board = board;
     this.cards = cards;
   }
 
@@ -72,7 +72,7 @@ export default class Column {
     }).render();
 
     ButtonAdd.addEventListener('click', () => {
-      openNewCard(column, this.name);
+      openNewCard(column, { columnName: this.name, board: this.board });
     });
 
     column.append(ButtonAdd);
