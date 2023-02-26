@@ -38,7 +38,7 @@ export default class View {
     this.container = container;
     // this.board = new Board(this.mainContainer);
     this.start = new Start(this.container, this.mainContainer);
-    this.workspace = new Workspace(this.container, currentUser);
+    this.workspace = new Workspace(this.mainContainer, currentUser);
     this.userPopup = new UserPopup(this.container, currentUser);
     this.header = new Header(this.container, this.userPopup);
     this.footer = new Footer(this.container);
