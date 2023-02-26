@@ -64,7 +64,9 @@ export default class CardModal extends Card {
     ]);
 
     const cardModalHeader = createlement('div', ['card__modal', 'flex', 'justify-between']);
-    const cardModalTitle = createlement('h3', ['card-modal__title', 'mb-6'], '', `${this.name}`);
+    const cardModalTitle: HTMLInputElement = createlement('input', ['card-modal__title', 'mb-6'], '');
+    cardModalTitle.type = 'text';
+    cardModalTitle.value = `${this.name}`;
 
     cardModalHeader.append(cardModalTitle);
 
@@ -78,7 +80,9 @@ export default class CardModal extends Card {
       'gap-3',
       'my-5',
     ]);
-    const descriptionText = createlement('div', ['board__desc-text'], '', 'This description text');
+    const descriptionText: HTMLInputElement = createlement('input', ['board__desc-text'], '');
+    descriptionText.type = 'text';
+    descriptionText.value = `${this.description}`;
     const cardModalDescription = createlement('div', ['board__desc'], '', `${BoardSVG.Lines}`);
     cardModalDescriptionContainer.append(cardModalDescription, descriptionText);
 
@@ -163,7 +167,7 @@ export default class CardModal extends Card {
     }).render();
 
     const cardDeleteButton = new ButtonTextWithIcon({
-      value: 'Make a template',
+      value: 'Delete card',
       className: ['min-w-[200px]'],
       onClick: testCLick,
       svg: BoardSVG.Delete,
@@ -220,6 +224,7 @@ export default class CardModal extends Card {
     overlay.append(cardModal);
 
     this.container.append(overlay);
+    return overlay;
   }
 
   // update() {}

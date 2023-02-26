@@ -1,5 +1,6 @@
 import createElement from '../../../utils/create-element';
 import testCLick from '../../../utils/test-click';
+import openNewCard from '../../../utils/add-new-card';
 import BoardSVG from '../Board/Board-svg';
 import ButtonWithIcon from '../Button/ButtonWithIcon';
 import { IColumnProps } from './Column.types';
@@ -11,7 +12,7 @@ export default class Column {
 
   name: string;
 
-  table: string;
+  board: string;
 
   cards: string[];
 
@@ -19,13 +20,13 @@ export default class Column {
     container,
     id,
     name,
-    table,
+    board,
     cards,
   }: IColumnProps) {
     this.container = container;
     this.id = id;
     this.name = name;
-    this.table = table;
+    this.board = board;
     this.cards = cards;
   }
 
@@ -67,11 +68,14 @@ export default class Column {
     const ButtonAdd = new ButtonWithIcon({
       value: 'Add new card',
       className: ['button-add'],
-      // onClick: testCLick,
       svg: BoardSVG.Add,
+    }).render();
+
+    ButtonAdd.addEventListener('click', () => {
+      openNewCard(column, { columnName: this.name, board: this.board });
     });
 
-    column.append(ButtonAdd.render());
+    column.append(ButtonAdd);
 
     this.container.append(column);
     return column;
