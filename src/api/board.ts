@@ -38,9 +38,10 @@ export class HttpBoard {
         'Content-type': 'application/json',
       },
     });
-    await response.json().catch((err: Error) => {
+    const data = await response.json().catch((err: Error) => {
       throw err;
     }) as IMsg;
+    return data;
   }
 
   async getBoard(id: string) {

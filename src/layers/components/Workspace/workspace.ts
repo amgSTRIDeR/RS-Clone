@@ -5,6 +5,7 @@ import { boardHttp } from '../../../api/board';
 import Board from '../Board/Board';
 import getUserInfo from '../../../utils/get-user-info';
 import LoadingModal from '../loading-modal/loading-modal';
+import NotificationMessage from '../notification-message/notification-message';
 
 export default class Workspace {
   container: HTMLElement;
@@ -126,19 +127,40 @@ export default class Workspace {
           'cursor-pointer',
           'bg-cover',
           'bg-center',
+          'relative',
+          'group',
         ],
         '',
-        `<div class="rounded p-[5px] text-primary bg-base-100 bg-opacity-70">${board.name}</div>`,
+        `<div class="rounded p-[5px] text-primary bg-base-100 bg-opacity-70">${board.name}</div>
+         <svg class="opacity-0 group-hover:opacity-100 bg-base-100 rounded-full hover:scale-150 absolute top-2 right-2 cursor-pointer fill-primary" style="width: 1em; height: 1em;vertical-align: middle; overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" title="Delete board"><path d="M810.65984 170.65984q18.3296 0 30.49472 12.16512t12.16512 30.49472q0 18.00192-12.32896 30.33088l-268.67712 268.32896 268.67712 268.32896q12.32896 12.32896 12.32896 30.33088 0 18.3296-12.16512 30.49472t-30.49472 12.16512q-18.00192 0-30.33088-12.32896l-268.32896-268.67712-268.32896 268.67712q-12.32896 12.32896-30.33088 12.32896-18.3296 0-30.49472-12.16512t-12.16512-30.49472q0-18.00192 12.32896-30.33088l268.67712-268.32896-268.67712-268.32896q-12.32896-12.32896-12.32896-30.33088 0-18.3296 12.16512-30.49472t30.49472-12.16512q18.00192 0 30.33088 12.32896l268.32896 268.67712 268.32896-268.67712q12.32896-12.32896 30.33088-12.32896z"/></svg>`,
       );
 
       if (board.imageURL) {
         workspaceBoard.style.backgroundImage = `url(${board.imageURL})`;
       }
 
-      workspaceBoard.addEventListener('click', () => {
-        const newBoard: Board = new Board(this.container, board);
-        this.container.innerHTML = '';
-        newBoard.render();
+      workspaceBoard.addEventListener('click', async (e) => {
+        if (e.target instanceof HTMLElement) {
+          const newBoard: Board = new Board(this.container, board);
+          this.container.innerHTML = '';
+          newBoard.render();
+        }
+        if (e.target instanceof SVGElement) {
+          LoadingModal.show();
+          await boardHttp
+            // eslint-disable-next-line no-underscore-dangle
+            .deleteBoard(`${board._id}`)
+            .then((resp) => {
+              NotificationMessage.showNotification(`Board '${board.name}' - ${Object.values(resp)}`);
+              window.location.hash = 'board';
+            })
+            .catch((err) => {
+              NotificationMessage.showNotification(`${Object.values(err)}: ${Object.values(err)}`);
+            })
+            .finally(() => {
+              LoadingModal.hide();
+            });
+        }
       });
       workspaceBoardsList.append(workspaceBoard);
     });
