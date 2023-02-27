@@ -21,4 +21,11 @@ export default class AuthenticateManager {
   public checkId() {
     return !!localStorage.getItem('id');
   }
+
+  public getId() {
+    if (localStorage.getItem('id')) {
+      return localStorage.getItem('id');
+    }
+    return '';
+  }
 }

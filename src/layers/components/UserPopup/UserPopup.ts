@@ -61,12 +61,10 @@ export default class UserPopup {
   }
 
   hide() {
-    console.log('hide');
     this.userPopup.classList.add('hidden');
   }
 
   show() {
-    console.log('show');
     this.userPopup.classList.remove('hidden');
   }
 }

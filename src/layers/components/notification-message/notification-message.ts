@@ -1,7 +1,7 @@
 import createElement from '../../../utils/create-element';
 
 export default class NotificationMessage {
-  static message = createElement('p', ['font-medium']);
+  static message = createElement('p', ['font-medium', 'z-20', 'relative']);
 
   static messageWrapper = createElement('div', [
     'top-20',
@@ -14,9 +14,10 @@ export default class NotificationMessage {
     'fixed',
     'ease-in-out',
     'duration-1000',
-    'z-100',
+    'z-20',
     'pointer-events-none',
     'hidden',
+    'absolute',
   ]);
 
   static render(container: HTMLElement) {

@@ -11,6 +11,7 @@ export interface IUserPayload {
 
 export interface IUser extends IUserPayload {
   id: string;
+  _id?: string;
   __v: number;
 }
 

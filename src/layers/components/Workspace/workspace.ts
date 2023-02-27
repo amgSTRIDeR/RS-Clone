@@ -1,24 +1,20 @@
-import { IBoard, IUserPayload } from '../../../api/interfaces';
+import { IBoard } from '../../../api/interfaces';
 import createElement from '../../../utils/create-element';
 import BoardSVG from '../Board/Board-svg';
-import SignModal from '../sign-modal/sign-modal';
 import { boardHttp } from '../../../api/board';
 import Board from '../Board/Board';
+import getUserInfo from '../../../utils/get-user-info';
+import LoadingModal from '../loading-modal/loading-modal';
 
 export default class Workspace {
   container: HTMLElement;
 
-  currentUser: IUserPayload;
-
-  signupModal: SignModal;
-
-  constructor(container: HTMLElement, currentUser: IUserPayload) {
+  constructor(container: HTMLElement) {
     this.container = container;
-    this.currentUser = currentUser;
-    this.signupModal = new SignModal(this.container, 'up');
   }
 
   public async render() {
+    LoadingModal.show();
     const workspaceWrapper = createElement('div', [
       'workspace',
       'flex',
@@ -30,10 +26,7 @@ export default class Workspace {
       'py-[4vh]',
     ]);
 
-    const workspaceAside = createElement('div', [
-      'workspace__aside',
-      'w-[30%]',
-    ]);
+    const workspaceAside = createElement('div', ['workspace__aside', 'w-[30%]']);
 
     const workspaceLinkBoards = createElement(
       'a',
@@ -50,7 +43,7 @@ export default class Workspace {
         'cursor-pointer',
       ],
       '',
-      `${BoardSVG.Boards}<span>Boards</span>`,
+      `${BoardSVG.Boards}<span data-i18n="boards">Boards</span>`,
     );
 
     const workspaceLinkTemplates = createElement(
@@ -69,7 +62,7 @@ export default class Workspace {
         'cursor-pointer',
       ],
       '',
-      `${BoardSVG.BoardsTemplates}<span>Templates</span>`,
+      `${BoardSVG.BoardsTemplates}<span data-i18n="templates">Templates</span>`,
     );
 
     workspaceAside.append(workspaceLinkBoards, workspaceLinkTemplates);
@@ -90,12 +83,13 @@ export default class Workspace {
       'gap-5',
     ]);
 
-    const workspaceBoardsTitle = createElement(
-      'h3',
-      ['w-full', 'uppercase', 'font-medium', 'contrast-title'],
-      '',
-      'Your boards',
-    );
+    const workspaceBoardsTitle = createElement('h3', [
+      'w-full',
+      'uppercase',
+      'font-medium',
+      'contrast-title',
+    ]);
+    workspaceBoardsTitle.setAttribute('data-i18n', 'yourBoards');
     workspaceBoardsList.append(workspaceBoardsTitle);
 
     const workspaceStarredList = createElement('ul', [
@@ -105,16 +99,16 @@ export default class Workspace {
       'gap-5',
     ]);
 
-    const workspaceStarredTitle = createElement(
-      'h3',
-      ['w-full', 'uppercase', 'font-medium', 'contrast-title'],
-      '',
-      'Your starred boards',
-    );
-
+    const workspaceStarredTitle = createElement('h3', [
+      'w-full',
+      'uppercase',
+      'font-medium',
+      'contrast-title',
+    ]);
+    workspaceStarredTitle.setAttribute('data-i18n', 'starredBoards');
     workspaceStarredList.append(workspaceStarredTitle);
-
-    this.currentUser.tables.forEach(async (boardId) => {
+    const currentUser = await getUserInfo();
+    currentUser.tables.forEach(async (boardId) => {
       const board: IBoard = await boardHttp.getBoard(boardId);
       const workspaceBoard = createElement(
         'li',
@@ -128,12 +122,19 @@ export default class Workspace {
           'border',
           'contrast-border',
           'shadow-md',
-          'hover:bg-basic-3',
+          'hover:scale-105',
           'cursor-pointer',
+          'bg-cover',
+          'bg-center',
         ],
         '',
-        `<div>${board.name}</div>`,
+        `<div class="rounded p-[5px] text-primary bg-base-100 bg-opacity-70">${board.name}</div>`,
       );
+
+      if (board.imageURL) {
+        workspaceBoard.style.backgroundImage = `url(${board.imageURL})`;
+      }
+
       workspaceBoard.addEventListener('click', () => {
         const newBoard: Board = new Board(this.container, board);
         this.container.innerHTML = '';
@@ -142,7 +143,7 @@ export default class Workspace {
       workspaceBoardsList.append(workspaceBoard);
     });
 
-    this.currentUser.tables.forEach(async (boardId) => {
+    currentUser.tables.forEach(async (boardId) => {
       const board = await boardHttp.getBoard(boardId);
       if (board.starred) {
         const workspaceStarred = createElement(
@@ -176,5 +177,6 @@ export default class Workspace {
     workspaceWrapper.append(workspaceAside, workspaceMain);
 
     this.container.append(workspaceWrapper);
+    LoadingModal.hide();
   }
 }

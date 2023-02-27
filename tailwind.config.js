@@ -956,11 +956,13 @@ module.exports = {
       50: '50',
     },
   },
+  // eslint-disable-next-line global-require
   plugins: [require('daisyui')],
   daisyui: {
     themes: [
       {
         corporate: {
+          // eslint-disable-next-line global-require
           ...require('daisyui/src/colors/themes')['[data-theme=corporate]'],
           '.basic': {
             'background-color': '#b5d3ff6b',
@@ -969,7 +971,7 @@ module.exports = {
             'background-color': '#fff',
           },
           '.contrast-title': {
-            'color': '#2e51f6',
+            color: '#2e51f6',
           },
           '.contrast-border': {
             'border-color': '#cdcef4',
@@ -982,6 +984,7 @@ module.exports = {
           },
         },
         autumn: {
+          // eslint-disable-next-line global-require
           ...require('daisyui/src/colors/themes')['[data-theme=autumn]'],
           '.basic': {
             'background-color': '#ffe1e1ab',
@@ -990,7 +993,7 @@ module.exports = {
             'background-color': '#ffffffab',
           },
           '.contrast-title': {
-            'color': '#d85251',
+            color: '#d85251',
           },
           '.contrast-border': {
             'border-color': '#d8525187',
@@ -1003,6 +1006,7 @@ module.exports = {
           },
         },
         night: {
+          // eslint-disable-next-line global-require
           ...require('daisyui/src/colors/themes')['[data-theme=night]'],
           '.basic': {
             'background-color': '#93c5ff29',
@@ -1011,7 +1015,7 @@ module.exports = {
             'background-color': '#93c5ff30',
           },
           '.contrast-title': {
-            'color': '#2e51f6',
+            color: '#2e51f6',
           },
           '.contrast-border': {
             'border-color': '#004ea0',

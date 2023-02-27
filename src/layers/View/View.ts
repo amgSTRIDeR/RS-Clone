@@ -10,6 +10,7 @@ import NotificationMessage from '../components/notification-message/notification
 import UserPopup from '../components/UserPopup/UserPopup';
 import Workspace from '../components/Workspace/workspace';
 import { IUserPayload } from '../../api/interfaces';
+import BoardCreateModal from '../components/board-create-modal/board-create-modal';
 
 export default class View {
   private container: HTMLElement;
@@ -28,26 +29,27 @@ export default class View {
 
   private isAuthenticated = AuthenticateManager.getInstance();
 
-  mainContainer = createElement(
-    'main',
-    ['flex', 'h-full', 'flex-grow'],
-    'main',
-  );
+  private boardCreateModal: BoardCreateModal;
+
+  mainContainer = createElement('main', ['flex', 'h-full', 'flex-grow'], 'main');
 
   constructor(container: HTMLElement, currentUser: IUserPayload) {
     this.container = container;
     // this.board = new Board(this.mainContainer);
     this.start = new Start(this.container, this.mainContainer);
-    this.workspace = new Workspace(this.mainContainer, currentUser);
+    this.workspace = new Workspace(this.mainContainer);
     this.userPopup = new UserPopup(this.container, currentUser);
+    this.boardCreateModal = new BoardCreateModal(this.container);
     this.header = new Header(this.container, this.userPopup);
     this.footer = new Footer(this.container);
   }
 
   async render() {
+    window.location.hash = 'main';
     if (this.isAuthenticated.checkId()) {
       this.workspace.render();
       this.userPopup.render();
+      this.boardCreateModal.render();
     } else {
       this.start.render();
     }
@@ -64,10 +66,10 @@ export default class View {
   renew() {
     this.mainContainer.innerHTML = '';
     this.header.renew();
-
+    this.boardCreateModal = new BoardCreateModal(this.container);
+    this.boardCreateModal.render();
     if (this.isAuthenticated.checkId()) {
       this.workspace.render();
-
       this.userPopup.render();
     } else {
       this.start.render();
@@ -85,5 +87,16 @@ export default class View {
       this.start.signupModal.hide();
       this.header.signinModal.show();
     });
+
+    this.header.headerNav.navCreate.addEventListener('click', () => {
+      this.boardCreateModal.show();
+    });
+
+    window.onhashchange = () => {
+      if (window.location.hash !== '#main') {
+        this.renew();
+        window.location.hash = 'main';
+      }
+    };
   }
 }
