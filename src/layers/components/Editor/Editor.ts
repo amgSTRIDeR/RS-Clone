@@ -2,7 +2,7 @@ import createElement from '../../../utils/create-element';
 import testCLick from '../../../utils/test-click';
 import Button from '../Button/Button';
 import ButtonWithIcon from '../Button/ButtonWithIcon';
-import { EditorSVG } from './EditorSVG';
+import EditorSVG from './EditorSVG';
 
 export default class Editor {
   container: HTMLElement;
