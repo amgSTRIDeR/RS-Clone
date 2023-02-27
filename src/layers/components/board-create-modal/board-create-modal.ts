@@ -1,10 +1,8 @@
 /* eslint-disable operator-linebreak */
-/* eslint-disable max-len */
 import { boardHttp } from '../../../api/board';
 import { userHttp } from '../../../api/user';
 import createElement from '../../../utils/create-element';
 import AuthenticateManager from '../../shared/authenticate-manager';
-// eslint-disable-next-line import/no-cycle
 import LoadingModal from '../loading-modal/loading-modal';
 import NotificationMessage from '../notification-message/notification-message';
 
@@ -33,7 +31,7 @@ export default class BoardCreateModal {
   constructor(container: HTMLElement) {
     this.container = container;
     this.imageUrl = '';
-    this.participants = [];
+    this.participants = [`${this.authenticateManager.getId()}`];
   }
 
   async render() {
@@ -348,8 +346,8 @@ export default class BoardCreateModal {
       }
       if (nameRegex.test(boardNameInput.value)) {
         LoadingModal.show();
+        const currentUserId = this.authenticateManager.getId();
         const date = new Date();
-
         await boardHttp
           .createBoard({
             name: `${boardNameInput.value}`,
@@ -357,9 +355,9 @@ export default class BoardCreateModal {
             cards: [],
             date,
             imageURL: `${this.imageUrl}`,
-            creator: `${this.authenticateManager.getId()}`,
+            creator: `${currentUserId}`,
             members: this.participants,
-            columns: [],
+            columns: ['Column1'],
             starred: false,
           })
           .then((resp) => {
@@ -369,6 +367,7 @@ export default class BoardCreateModal {
             LoadingModal.hide();
             this.imageUrl = '';
             this.modalWrapper.innerHTML = '';
+            this.participants = [`${this.authenticateManager.getId()}`];
             this.render();
           })
           .catch((err) => {
@@ -387,39 +386,42 @@ export default class BoardCreateModal {
     const usersElementsArray: HTMLElement[] = [];
     const usersArray = await userHttp.getUsers();
     usersArray.forEach((e) => {
-      const userLi = createElement('li', [
-        'flex',
-        'items-center',
-        'py-2',
-        'px-3',
-        'hover:bg-secondary/50',
-        'cursor-pointer',
-        'hover:text-primary',
-        'transition',
-        'ease-in-out',
-        'delay-50',
-      ]);
-
       // eslint-disable-next-line no-underscore-dangle
-      userLi.setAttribute('user-id', `${e._id}`);
-      userLi.setAttribute('user-name', `${e.username}`);
+      if (e._id !== this.authenticateManager.getId()) {
+        const userLi = createElement('li', [
+          'flex',
+          'items-center',
+          'py-2',
+          'px-3',
+          'hover:bg-secondary/50',
+          'cursor-pointer',
+          'hover:text-primary',
+          'transition',
+          'ease-in-out',
+          'delay-50',
+        ]);
 
-      const userImage = createElement('div', [
-        'rounded-full',
-        'h-8',
-        'w-8',
-        'bg-primary/50',
-        'mr-3',
-      ]);
+        // eslint-disable-next-line no-underscore-dangle
+        userLi.setAttribute('user-id', `${e._id}`);
+        userLi.setAttribute('user-name', `${e.username}`);
 
-      const userName = createElement('div', ['flex-1']);
-      userName.textContent = `${e.username}`;
+        const userImage = createElement('div', [
+          'rounded-full',
+          'h-8',
+          'w-8',
+          'bg-primary/50',
+          'mr-3',
+        ]);
 
-      const copyElement = userLi.cloneNode();
-      usersElementsArray.push(copyElement as HTMLElement);
-      copyElement.appendChild(userImage);
-      copyElement.appendChild(userName);
-      boardUsers.appendChild(copyElement);
+        const userName = createElement('div', ['flex-1']);
+        userName.textContent = `${e.username}`;
+
+        const copyElement = userLi.cloneNode();
+        usersElementsArray.push(copyElement as HTMLElement);
+        copyElement.appendChild(userImage);
+        copyElement.appendChild(userName);
+        boardUsers.appendChild(copyElement);
+      }
     });
     return usersElementsArray;
   }
