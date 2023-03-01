@@ -34,6 +34,7 @@ export interface IBoardPayload {
 
 export interface IBoard extends IBoardPayload {
   id: string;
+  _id?: string;
   __v: number;
 }
 
