@@ -45,4 +45,4 @@ After registration or authorization, click the create button
 4. Express
 5. JWT
 
-Link to back-end repo: https://github.com/A-nastasi-a/RS-Clone-backend/tree/main
+[Link to back-end repo](https://github.com/A-nastasi-a/RS-Clone-backend/tree/main)
